@@ -1,0 +1,89 @@
+---
+title: "Fibonacci Sequence"
+description: "Generate Fibonacci numbers iteratively and recursively."
+---
+
+## Problem
+
+Write a C program that prints the first `n` numbers in the Fibonacci sequence.
+
+The Fibonacci sequence is defined as:
+- `F(0) = 0`
+- `F(1) = 1`
+- `F(n) = F(n-1) + F(n-2)` for n > 1
+
+## Test cases
+
+| Input (n) | Expected output |
+|---|---|
+| `1` | `0` |
+| `5` | `0 1 1 2 3` |
+| `8` | `0 1 1 2 3 5 8 13` |
+
+## Solution 1 — Iterative (recommended)
+
+```c fibonacci_iter.c
+#include <stdio.h>
+
+void fibonacci(int n) {
+    if (n <= 0) return;
+
+    long long a = 0, b = 1;
+
+    for (int i = 0; i < n; i++) {
+        printf("%lld ", a);
+        long long next = a + b;
+        a = b;
+        b = next;
+    }
+    printf("\n");
+}
+
+int main(void) {
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    fibonacci(n);
+    return 0;
+}
+```
+
+**Time complexity:** O(n) — each number is computed once.
+**Space complexity:** O(1) — only three variables used, regardless of n.
+
+## Solution 2 — Recursive (educational)
+
+```c fibonacci_rec.c
+#include <stdio.h>
+
+long long fib(int n) {
+    if (n <= 0) return 0;
+    if (n == 1) return 1;
+    return fib(n - 1) + fib(n - 2);
+}
+
+int main(void) {
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        printf("%lld ", fib(i));
+    }
+    printf("\n");
+    return 0;
+}
+```
+
+<Warning>
+  The recursive version has **exponential** time complexity — O(2ⁿ). It becomes unbearably slow around n=40. Use the iterative version in practice.
+</Warning>
+
+## Sample run
+
+```bash
+$ gcc -std=c11 -Wall -o fib fibonacci_iter.c
+$ ./fib
+Enter n: 8
+0 1 1 2 3 5 8 13
+```

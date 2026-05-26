@@ -1,0 +1,116 @@
+---
+title: "Strings"
+description: "Working with character arrays and the C string library."
+---
+
+## What is a string in C?
+
+C has no native string type. A string is a **null-terminated array of `char`** — an array that ends with the special character `'\0'` (ASCII 0):
+
+```c
+char name[] = "Kinsu";
+// Stored as: ['K','i','n','s','u','\0']
+//   indices:    0   1   2   3   4   5
+```
+
+The `'\0'` is added automatically when you use a string literal. The array size must be at least `length + 1` to fit it.
+
+## Declaring strings
+
+```c
+char s1[] = "hello";          // size 6 (5 chars + null)
+char s2[10] = "hello";        // size 10, rest zeroed
+char s3[10];                  // uninitialized buffer — be careful
+char *s4 = "hello";           // pointer to string literal (read-only)
+```
+
+<Warning>
+  String literals (`char *s = "hello"`) are stored in read-only memory. Modifying them is undefined behavior. Use `char s[] = "hello"` for a mutable copy.
+</Warning>
+
+## Printing strings
+
+```c
+char name[] = "Kinsu";
+printf("%s\n", name);        // Kinsu
+printf("%c\n", name[0]);     // K — individual character
+```
+
+## The `string.h` library
+
+Include `<string.h>` for standard string functions:
+
+```c
+#include <string.h>
+```
+
+### `strlen` — string length
+
+```c
+char s[] = "hello";
+printf("%zu\n", strlen(s));  // 5  (does NOT count the null terminator)
+```
+
+### `strcpy` — copy a string
+
+```c
+char src[] = "world";
+char dst[10];
+strcpy(dst, src);  // copies src into dst including '\0'
+```
+
+<Warning>
+  `strcpy` does not check the destination size. Prefer `strncpy` or `snprintf` to avoid buffer overflows.
+</Warning>
+
+### `strcat` — concatenate strings
+
+```c
+char result[20] = "Hello, ";
+strcat(result, "World!");
+printf("%s\n", result);  // Hello, World!
+```
+
+### `strcmp` — compare strings
+
+```c
+int cmp = strcmp("apple", "banana");
+// < 0 if first < second
+// = 0 if equal
+// > 0 if first > second
+
+if (strcmp(s1, s2) == 0) {
+    printf("Equal\n");
+}
+```
+
+<Warning>
+  Never compare strings with `==`. It compares pointer addresses, not content.
+</Warning>
+
+### `strchr` / `strstr` — searching
+
+```c
+char s[] = "hello world";
+char *pos = strchr(s, 'o');   // pointer to first 'o'
+char *sub = strstr(s, "world"); // pointer to "world" substring
+```
+
+## Reading strings safely
+
+```c
+char name[50];
+fgets(name, sizeof(name), stdin);           // reads a full line
+name[strcspn(name, "\n")] = '\0';           // strip the trailing newline
+```
+
+## Character-by-character iteration
+
+Since a string is just an array, iterate until the null terminator:
+
+```c
+char s[] = "Hello";
+for (int i = 0; s[i] != '\0'; i++) {
+    printf("%c\n", s[i]);
+}
+```

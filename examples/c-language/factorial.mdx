@@ -1,0 +1,85 @@
+---
+title: "Factorial"
+description: "Compute n! using an iterative loop and a recursive function."
+---
+
+## Problem
+
+Write a C program that reads a non-negative integer `n` and prints `n!` (n factorial).
+
+**Definition:** `n! = n × (n-1) × ... × 2 × 1`, with `0! = 1`.
+
+## Constraints
+
+- `0 ≤ n ≤ 20` (beyond 20, the result overflows a 64-bit integer)
+
+## Test cases
+
+| Input | Expected output |
+|---|---|
+| `0` | `1` |
+| `1` | `1` |
+| `5` | `120` |
+| `10` | `3628800` |
+| `20` | `2432902008176640000` |
+
+## Solution 1 — Iterative
+
+```c factorial_iter.c
+#include <stdio.h>
+
+long long factorial(int n) {
+    long long result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+int main(void) {
+    int n;
+    printf("Enter n (0-20): ");
+    scanf("%d", &n);
+
+    if (n < 0 || n > 20) {
+        printf("Error: n must be between 0 and 20\n");
+        return 1;
+    }
+
+    printf("%d! = %lld\n", n, factorial(n));
+    return 0;
+}
+```
+
+## Solution 2 — Recursive
+
+```c factorial_rec.c
+#include <stdio.h>
+
+long long factorial(int n) {
+    if (n <= 1) return 1;           // base case
+    return n * factorial(n - 1);    // recursive case
+}
+
+int main(void) {
+    int n;
+    printf("Enter n (0-20): ");
+    scanf("%d", &n);
+    printf("%d! = %lld\n", n, factorial(n));
+    return 0;
+}
+```
+
+## Sample run
+
+```bash
+$ gcc -std=c11 -Wall -o fact factorial_iter.c
+$ ./fact
+Enter n (0-20): 10
+10! = 3628800
+```
+
+## Notes
+
+- `long long` is needed to hold values up to 20! (which is about 2.4 × 10¹⁸)
+- For `n > 20`, use arbitrary-precision libraries or Python's built-in integers

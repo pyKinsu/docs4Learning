@@ -1,0 +1,87 @@
+---
+title: "Your First C Program"
+description: "Write, compile, and run Hello, World in C — with a line-by-line explanation."
+---
+
+## The program
+
+```c hello.c
+#include <stdio.h>
+
+int main(void) {
+    printf("Hello, World!\n");
+    return 0;
+}
+```
+
+## Line-by-line breakdown
+
+### `#include <stdio.h>`
+
+This is a **preprocessor directive**. It tells the compiler to include the Standard Input/Output header file before compilation. `stdio.h` provides functions like `printf` and `scanf`.
+
+Without it, the compiler would not know what `printf` is.
+
+### `int main(void)`
+
+Every C program must have a `main` function — it is the **entry point** where execution begins.
+
+- `int` — the function returns an integer (the exit code)
+- `main` — the special name the OS looks for
+- `(void)` — explicitly states the function takes no arguments
+
+### `printf("Hello, World!\n");`
+
+`printf` (print formatted) writes output to the terminal.
+
+- `"Hello, World!\n"` — a string literal
+- `\n` — an **escape sequence** for a newline character; without it, the cursor stays on the same line
+
+### `return 0;`
+
+Returns exit code `0` to the operating system. By convention, `0` means success. Any non-zero value signals an error.
+
+## Compiling and running
+
+```bash
+# Compile
+gcc -std=c11 -Wall -o hello hello.c
+
+# Run
+./hello
+```
+
+Expected output:
+
+```
+Hello, World!
+```
+
+<Tip>
+  On Windows, run `hello.exe` instead of `./hello`.
+</Tip>
+
+## What happens when you compile
+
+```
+hello.c  →  gcc (preprocessor + compiler + linker)  →  hello (executable)
+```
+
+The compiler reads your source, processes `#include`, compiles to machine code, links against the C standard library (where `printf` lives), and outputs a binary you can execute directly.
+
+## Common first errors
+
+<AccordionGroup>
+  <Accordion title="error: 'printf' undeclared">
+    You forgot `#include <stdio.h>`. Add it at the top of your file.
+  </Accordion>
+  <Accordion title="error: expected ';' before '}'">
+    Missing semicolon at the end of a statement. Every statement in C ends with `;`.
+  </Accordion>
+  <Accordion title="permission denied: ./hello">
+    On Linux/macOS, the file may not be executable. Run `chmod +x hello` or just recompile with `gcc`.
+  </Accordion>
+  <Accordion title="'gcc' is not recognized (Windows)">
+    GCC is not in your PATH. Ensure `C:\mingw64\bin` is added to your system environment variables.
+  </Accordion>
+</AccordionGroup>

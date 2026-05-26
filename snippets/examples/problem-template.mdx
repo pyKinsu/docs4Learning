@@ -1,0 +1,52 @@
+---
+title: "Example Problem Template"
+description: "Standard template for adding a new example problem"
+---
+
+Use this structure when adding a new example to the Examples section:
+
+```mdx
+---
+title: "Problem Title"
+description: "One-line description of what the example demonstrates."
+---
+
+## Problem
+
+Clear statement of what the program must do.
+
+## Constraints
+
+- Constraint 1
+- Constraint 2
+
+## Test cases
+
+| Input | Expected output |
+|---|---|
+| `input1` | `output1` |
+| `input2` | `output2` |
+
+## Solution
+
+\`\`\`c filename.c
+// Full working solution with comments
+#include <stdio.h>
+
+int main(void) {
+    // ...
+    return 0;
+}
+\`\`\`
+
+## Explanation
+
+Walk through the key parts of the solution.
+
+## Sample run
+
+\`\`\`bash
+$ gcc -std=c11 -Wall -o program filename.c
+$ ./program
+\`\`\`
+```

@@ -1,0 +1,87 @@
+---
+title: "Variables"
+description: "Declaring, initializing, and working with variables in C."
+---
+
+## What is a variable?
+
+A variable is a named location in memory that stores a value. In C, every variable must be **declared** before use, and its type must be specified explicitly.
+
+```c
+int age = 25;        // integer
+float price = 9.99;  // floating-point number
+char grade = 'A';    // single character
+```
+
+## Declaration vs initialization
+
+```c
+int x;        // declaration — reserves memory, value is undefined (garbage)
+int y = 10;   // declaration + initialization — value is set to 10
+```
+
+<Warning>
+  Reading an uninitialized variable in C is **undefined behavior**. Always initialize your variables or assign a value before reading them.
+</Warning>
+
+## Naming rules
+
+- Can contain letters, digits, and underscores (`_`)
+- Must start with a letter or underscore — never a digit
+- Case-sensitive: `count` and `Count` are different variables
+- Cannot be a reserved keyword (`int`, `return`, `if`, etc.)
+
+```c
+int count = 0;       // valid
+int _internal = 1;   // valid (common for private/internal variables)
+int 2fast = 0;       // INVALID — starts with a digit
+int return = 5;      // INVALID — reserved keyword
+```
+
+## Multiple declarations
+
+```c
+int a, b, c;           // declare three ints (all uninitialized)
+int x = 1, y = 2;     // declare and initialize multiple on one line
+```
+
+## Constants
+
+Use `const` to declare a variable whose value cannot be changed after initialization:
+
+```c
+const float PI = 3.14159f;
+const int MAX_SIZE = 100;
+```
+
+<Tip>
+  Prefer `const` over `#define` for typed constants. `const` variables respect scope and are visible to the debugger.
+</Tip>
+
+## The `#define` macro constant
+
+```c
+#define MAX_BUFFER 1024
+#define APP_NAME "pyKinsu"
+```
+
+`#define` is a preprocessor text substitution — it has no type and no scope. Use it for values that must be available at compile time (like array sizes before C99).
+
+## Scope preview
+
+A variable is only accessible within the **block** `{}` where it is declared:
+
+```c
+int main(void) {
+    int x = 5;
+    {
+        int y = 10;
+        printf("%d %d\n", x, y);  // OK
+    }
+    printf("%d\n", x);            // OK
+    printf("%d\n", y);            // ERROR — y is out of scope
+    return 0;
+}
+```
+
+Scope is covered in depth in the [Functions / Scope](/c-language/functions/scope) section.

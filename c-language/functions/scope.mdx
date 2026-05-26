@@ -1,0 +1,109 @@
+---
+title: "Scope & Lifetime"
+description: "Understanding where variables live and how long they last in C."
+---
+
+## What is scope?
+
+Scope determines **where** a variable can be accessed in your code.
+
+## Block scope (local variables)
+
+Variables declared inside `{}` are local to that block:
+
+```c
+int main(void) {
+    int x = 10;   // x is local to main
+
+    {
+        int y = 20;   // y is local to this inner block
+        printf("%d %d\n", x, y);  // OK
+    }
+
+    printf("%d\n", x);   // OK
+    printf("%d\n", y);   // ERROR: y is out of scope
+    return 0;
+}
+```
+
+## Function scope
+
+Each function has its own scope. Variables in one function are invisible to another:
+
+```c
+void foo(void) {
+    int a = 1;
+}
+
+void bar(void) {
+    printf("%d\n", a);  // ERROR: a is not in scope here
+}
+```
+
+## File scope (global variables)
+
+Variables declared outside any function have **file scope** — they are accessible from any function in the same file:
+
+```c
+int global_count = 0;  // file scope
+
+void increment(void) {
+    global_count++;
+}
+
+int main(void) {
+    increment();
+    increment();
+    printf("%d\n", global_count);  // 2
+    return 0;
+}
+```
+
+<Warning>
+  Overusing global variables makes code hard to reason about and test. Use them sparingly — prefer passing values through function parameters.
+</Warning>
+
+## Variable lifetime (storage duration)
+
+Scope (where) is separate from **lifetime** (how long the variable exists in memory):
+
+| Storage class | Keyword | Lifetime | Default value |
+|---|---|---|---|
+| Automatic | (default, or `auto`) | Until block exits | Undefined (garbage) |
+| Static local | `static` | Entire program | Zero |
+| Global | (file scope) | Entire program | Zero |
+
+## `static` local variables
+
+A `static` local variable is initialized once and retains its value between calls:
+
+```c
+void counter(void) {
+    static int count = 0;  // initialized only on first call
+    count++;
+    printf("Called %d times\n", count);
+}
+
+int main(void) {
+    counter();  // Called 1 times
+    counter();  // Called 2 times
+    counter();  // Called 3 times
+    return 0;
+}
+```
+
+## Shadowing
+
+A local variable can **shadow** (hide) an outer variable with the same name:
+
+```c
+int x = 100;  // global
+
+int main(void) {
+    int x = 5;  // local x shadows global x
+    printf("%d\n", x);  // 5 — local wins
+    return 0;
+}
+```
+
+Shadowing is legal but confusing. Avoid reusing variable names across nested scopes.

@@ -1,0 +1,133 @@
+---
+title: "Introduction to Pointers"
+description: "Understanding memory addresses, pointer variables, and indirection in C."
+---
+
+## What is a pointer?
+
+A **pointer** is a variable that stores a memory address. Instead of holding a value like `42`, it holds the location in RAM where a value is stored.
+
+Every variable in your program lives at some address in memory. Pointers let you work with those addresses directly.
+
+## Declaring a pointer
+
+```c
+int x = 42;
+int *p = &x;  // p holds the address of x
+```
+
+- `int *p` — declares `p` as a pointer to an `int`
+- `&x` — the **address-of** operator returns the memory address of `x`
+
+## The two pointer operators
+
+| Operator | Name | What it does |
+|---|---|---|
+| `&` | Address-of | Returns the address of a variable |
+| `*` | Dereference | Accesses the value at the address |
+
+```c
+int x = 42;
+int *p = &x;
+
+printf("%d\n",  x);   // 42      — value of x
+printf("%p\n",  p);   // 0x...   — address stored in p
+printf("%d\n", *p);   // 42      — value at the address p points to
+```
+
+## Modifying through a pointer
+
+Dereferencing lets you read **and write** the value at that address:
+
+```c
+int x = 10;
+int *p = &x;
+
+*p = 99;  // writes 99 to the memory location p points to
+
+printf("%d\n", x);   // 99 — x was modified through p
+```
+
+This is how functions can modify their caller's variables — by accepting a pointer:
+
+```c
+void double_value(int *n) {
+    *n = *n * 2;
+}
+
+int main(void) {
+    int x = 5;
+    double_value(&x);
+    printf("%d\n", x);  // 10
+    return 0;
+}
+```
+
+## Pointer types
+
+A pointer must match the type it points to:
+
+```c
+int  *ip;   // pointer to int
+char *cp;   // pointer to char
+float *fp;  // pointer to float
+```
+
+The type tells the compiler how many bytes to read when dereferencing (`int` = 4 bytes, `char` = 1 byte, etc.).
+
+## NULL pointer
+
+A pointer that points to nothing is set to `NULL`:
+
+```c
+int *p = NULL;
+
+if (p == NULL) {
+    printf("Pointer is not set\n");
+}
+```
+
+**Always initialize pointers** — either to a valid address or to `NULL`. An uninitialized pointer (sometimes called a **wild pointer**) points to a random memory location and dereferencing it is undefined behavior.
+
+## Arrays and pointers
+
+Array names decay to a pointer to the first element:
+
+```c
+int arr[] = {10, 20, 30};
+int *p = arr;  // p points to arr[0]
+
+printf("%d\n", *p);      // 10
+printf("%d\n", *(p+1));  // 20
+printf("%d\n", p[2]);    // 30 — pointer subscript notation
+```
+
+`arr[i]` is exactly equivalent to `*(arr + i)` — the compiler rewrites it this way.
+
+## Common pointer mistakes
+
+<AccordionGroup>
+  <Accordion title="Forgetting & in scanf">
+    ```c
+    int n;
+    scanf("%d", n);   // WRONG — passes the value, not the address
+    scanf("%d", &n);  // CORRECT
+    ```
+  </Accordion>
+  <Accordion title="Dereferencing NULL">
+    ```c
+    int *p = NULL;
+    *p = 5;  // CRASH — segmentation fault
+    ```
+    Always check a pointer is non-NULL before dereferencing.
+  </Accordion>
+  <Accordion title="Returning a pointer to a local variable">
+    ```c
+    int* bad(void) {
+        int x = 42;
+        return &x;  // DANGER — x is destroyed when function returns
+    }
+    ```
+    The local variable's memory is reclaimed when the function exits.
+  </Accordion>
+</AccordionGroup>

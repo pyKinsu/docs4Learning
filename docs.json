@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "pyKinsu Docs",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -11,62 +11,100 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Home",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
               "index",
               "quickstart",
               "development"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "C Language",
+        "groups": [
           {
-            "group": "Customization",
+            "group": "Overview",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "c-language/introduction"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Getting Started",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/components",
-              "essentials/reusable-snippets"
+              "c-language/getting-started/overview",
+              "c-language/getting-started/setup",
+              "c-language/getting-started/first-program"
             ]
           },
           {
-            "group": "Agent ready",
+            "group": "Basics",
             "pages": [
-              "agent-ready/prompt",
-              "agent-ready/visibility",
-              "agent-ready/contextual",
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "c-language/basics/variables",
+              "c-language/basics/data-types",
+              "c-language/basics/operators",
+              "c-language/basics/input-output"
+            ]
+          },
+          {
+            "group": "Control Flow",
+            "pages": [
+              "c-language/control-flow/conditionals",
+              "c-language/control-flow/loops",
+              "c-language/control-flow/switch"
+            ]
+          },
+          {
+            "group": "Functions",
+            "pages": [
+              "c-language/functions/defining-functions",
+              "c-language/functions/recursion",
+              "c-language/functions/scope"
+            ]
+          },
+          {
+            "group": "Arrays & Strings",
+            "pages": [
+              "c-language/arrays-strings/arrays",
+              "c-language/arrays-strings/strings"
+            ]
+          },
+          {
+            "group": "Pointers",
+            "pages": [
+              "c-language/pointers/introduction",
+              "c-language/pointers/pointer-arithmetic"
+            ]
+          },
+          {
+            "group": "Memory Management",
+            "pages": [
+              "c-language/memory/stack-heap",
+              "c-language/memory/dynamic-memory"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Examples",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Overview",
             "pages": [
-              "api-reference/introduction"
+              "examples/index"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "C Language",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "examples/c-language/hello-world",
+              "examples/c-language/fibonacci",
+              "examples/c-language/factorial",
+              "examples/c-language/reverse-string",
+              "examples/c-language/linked-list"
             ]
           }
         ]
@@ -75,14 +113,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "GitHub",
+          "href": "https://github.com/pyKinsu/docs",
+          "icon": "github"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Mintlify Docs",
+          "href": "https://mintlify.com/docs",
+          "icon": "book-open-cover"
         }
       ]
     }
@@ -94,8 +132,8 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "GitHub",
+        "href": "https://github.com/pyKinsu"
       }
     ],
     "primary": {
@@ -104,23 +142,10 @@
       "href": "https://dashboard.mintlify.com"
     }
   },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/pykinsu",
+      "github": "https://github.com/pyKinsu"
     }
   }
 }

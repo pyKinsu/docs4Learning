@@ -1,0 +1,112 @@
+---
+title: "Environment Setup"
+description: "Install a C compiler and set up your editor to write and run C programs."
+---
+
+## Choosing a compiler
+
+The two most common C compilers are **GCC** (GNU Compiler Collection) and **Clang**. Both are free, open source, and produce excellent output. GCC is the standard on Linux; Clang ships with macOS Xcode tools.
+
+<Tabs>
+  <Tab title="Windows">
+    **Option 1: MinGW-w64 (recommended)**
+
+    1. Download from [winlibs.com](https://winlibs.com) — grab the latest GCC + LLVM/Clang release.
+    2. Extract to `C:\mingw64`.
+    3. Add `C:\mingw64\bin` to your system `PATH`.
+    4. Verify in a terminal:
+
+    ```bash
+    gcc --version
+    ```
+
+    **Option 2: WSL 2 (Windows Subsystem for Linux)**
+
+    Install WSL 2 and Ubuntu from the Microsoft Store, then follow the Linux instructions below. This gives you a native Linux environment on Windows.
+  </Tab>
+  <Tab title="macOS">
+    Install Xcode Command Line Tools, which includes both GCC (aliased) and Clang:
+
+    ```bash
+    xcode-select --install
+    ```
+
+    Verify:
+
+    ```bash
+    clang --version
+    gcc --version
+    ```
+  </Tab>
+  <Tab title="Linux (Ubuntu/Debian)">
+    ```bash
+    sudo apt update
+    sudo apt install build-essential gcc gdb
+    ```
+
+    `build-essential` includes GCC, G++, Make, and common headers.
+
+    Verify:
+
+    ```bash
+    gcc --version
+    gdb --version
+    ```
+  </Tab>
+</Tabs>
+
+## Recommended editors
+
+<CardGroup cols={2}>
+  <Card title="VS Code" icon="code" href="https://code.visualstudio.com">
+    Install the **C/C++ extension** by Microsoft for IntelliSense, debugging, and formatting.
+  </Card>
+  <Card title="CLion" icon="jetbrains" href="https://www.jetbrains.com/clion/">
+    Full-featured C/C++ IDE. Free for students via JetBrains Education.
+  </Card>
+</CardGroup>
+
+### VS Code setup
+
+After installing VS Code and the C/C++ extension:
+
+1. Open your project folder.
+2. Create a `.vscode/tasks.json` to build with a single shortcut:
+
+```json tasks.json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build C",
+      "type": "shell",
+      "command": "gcc",
+      "args": ["-std=c11", "-Wall", "-o", "${fileBasenameNoExtension}", "${file}"],
+      "group": { "kind": "build", "isDefault": true }
+    }
+  ]
+}
+```
+
+Press `Ctrl+Shift+B` to compile the currently open file.
+
+## Recommended compiler flags
+
+Always compile with warnings enabled. They catch bugs before they become problems.
+
+```bash
+gcc -std=c11 -Wall -Wextra -pedantic -o output main.c
+```
+
+| Flag | Purpose |
+|---|---|
+| `-std=c11` | Use the C11 standard |
+| `-Wall` | Enable all common warnings |
+| `-Wextra` | Enable extra diagnostic warnings |
+| `-pedantic` | Strict standard compliance |
+| `-g` | Include debug symbols (for `gdb`) |
+| `-O2` | Optimize for release builds |
+
+<Warning>
+  Never ship code compiled without `-Wall`. Compiler warnings are not optional — treat them as errors during development.
+</Warning>

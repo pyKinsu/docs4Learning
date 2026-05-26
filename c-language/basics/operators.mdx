@@ -1,0 +1,128 @@
+---
+title: "Operators"
+description: "Arithmetic, relational, logical, bitwise, and assignment operators in C."
+---
+
+## Arithmetic operators
+
+```c
+int a = 10, b = 3;
+
+printf("%d\n", a + b);   // 13  — addition
+printf("%d\n", a - b);   // 7   — subtraction
+printf("%d\n", a * b);   // 30  — multiplication
+printf("%d\n", a / b);   // 3   — integer division (truncates)
+printf("%d\n", a % b);   // 1   — modulo (remainder)
+```
+
+<Warning>
+  Integer division truncates toward zero. `10 / 3` is `3`, not `3.33`. Cast to `float` if you need the decimal: `(float)a / b`.
+</Warning>
+
+## Increment and decrement
+
+```c
+int x = 5;
+
+x++;    // post-increment: use x, then increment → x is now 6
+++x;    // pre-increment:  increment first, then use → x is now 7
+x--;    // post-decrement
+--x;    // pre-decrement
+```
+
+The difference matters when used in expressions:
+
+```c
+int a = 5;
+int b = a++;   // b = 5, a = 6  (b gets old value)
+int c = ++a;   // c = 7, a = 7  (c gets new value)
+```
+
+## Relational operators
+
+Return `1` (true) or `0` (false):
+
+```c
+5 == 5    // 1 — equal
+5 != 3    // 1 — not equal
+5 >  3    // 1 — greater than
+5 <  3    // 0 — less than
+5 >= 5    // 1 — greater than or equal
+5 <= 4    // 0 — less than or equal
+```
+
+## Logical operators
+
+```c
+int a = 1, b = 0;
+
+a && b    // 0 — logical AND (both must be true)
+a || b    // 1 — logical OR  (at least one must be true)
+!a        // 0 — logical NOT (inverts)
+```
+
+C uses **short-circuit evaluation**:
+- In `a && b`, if `a` is false, `b` is never evaluated.
+- In `a || b`, if `a` is true, `b` is never evaluated.
+
+## Assignment operators
+
+```c
+int x = 10;
+
+x += 5;    // x = x + 5  → 15
+x -= 3;    // x = x - 3  → 12
+x *= 2;    // x = x * 2  → 24
+x /= 4;    // x = x / 4  → 6
+x %= 4;    // x = x % 4  → 2
+```
+
+## Bitwise operators
+
+Operate directly on the binary representation of integers:
+
+```c
+int a = 0b1100;  // 12 in decimal
+int b = 0b1010;  // 10 in decimal
+
+a & b    // 0b1000 = 8  — AND
+a | b    // 0b1110 = 14 — OR
+a ^ b    // 0b0110 = 6  — XOR
+~a       // bitwise NOT (flips all bits)
+a << 1   // 0b11000 = 24 — left shift (multiply by 2)
+a >> 1   // 0b0110  = 6  — right shift (divide by 2)
+```
+
+Bitwise operators are heavily used in embedded systems, cryptography, and performance-critical code.
+
+## The ternary operator
+
+A compact if-else for simple conditions:
+
+```c
+int max = (a > b) ? a : b;
+// equivalent to:
+// if (a > b) max = a; else max = b;
+```
+
+## Operator precedence (simplified)
+
+Higher rows bind tighter:
+
+| Precedence | Operators |
+|---|---|
+| Highest | `()`, `[]`, `.`, `->` |
+| | `!`, `~`, `++`, `--`, `(type)`, `*`, `&`, `sizeof` |
+| | `*`, `/`, `%` |
+| | `+`, `-` |
+| | `<<`, `>>` |
+| | `<`, `<=`, `>`, `>=` |
+| | `==`, `!=` |
+| | `&`, `^`, `|` |
+| | `&&` |
+| | `||` |
+| Lowest | `=`, `+=`, `-=`, etc. |
+
+<Tip>
+  When in doubt, use parentheses. They make intent clear and prevent bugs from unexpected precedence.
+</Tip>

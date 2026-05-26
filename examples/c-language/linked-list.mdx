@@ -1,0 +1,159 @@
+---
+title: "Singly Linked List"
+description: "Implement a linked list in C with insert, delete, search, and traverse operations."
+---
+
+## Problem
+
+Implement a **singly linked list** in C that supports:
+
+- Insert a node at the head
+- Insert a node at the tail
+- Delete a node by value
+- Search for a value
+- Print all elements
+- Free the entire list
+
+## What is a linked list?
+
+A linked list is a sequence of **nodes**, each containing a value and a pointer to the next node:
+
+```
+[10] → [20] → [30] → NULL
+```
+
+Unlike arrays, nodes do not need to be contiguous in memory — each node points to the next wherever it happens to be.
+
+## Solution
+
+```c linked_list.c
+#include <stdio.h>
+#include <stdlib.h>
+
+// ── Node definition ─────────────────────────────────────
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+// ── Create a new node ────────────────────────────────────
+Node* node_create(int data) {
+    Node *n = malloc(sizeof(Node));
+    if (!n) { fprintf(stderr, "malloc failed\n"); exit(1); }
+    n->data = data;
+    n->next = NULL;
+    return n;
+}
+
+// ── Insert at head ───────────────────────────────────────
+void insert_head(Node **head, int data) {
+    Node *n  = node_create(data);
+    n->next  = *head;
+    *head    = n;
+}
+
+// ── Insert at tail ───────────────────────────────────────
+void insert_tail(Node **head, int data) {
+    Node *n = node_create(data);
+    if (*head == NULL) { *head = n; return; }
+
+    Node *cur = *head;
+    while (cur->next) cur = cur->next;
+    cur->next = n;
+}
+
+// ── Delete by value (first match) ────────────────────────
+int delete_value(Node **head, int data) {
+    if (!*head) return 0;
+
+    if ((*head)->data == data) {
+        Node *tmp = *head;
+        *head = (*head)->next;
+        free(tmp);
+        return 1;
+    }
+
+    Node *cur = *head;
+    while (cur->next && cur->next->data != data)
+        cur = cur->next;
+
+    if (!cur->next) return 0;  // not found
+
+    Node *tmp = cur->next;
+    cur->next = tmp->next;
+    free(tmp);
+    return 1;
+}
+
+// ── Search ───────────────────────────────────────────────
+int search(Node *head, int data) {
+    while (head) {
+        if (head->data == data) return 1;
+        head = head->next;
+    }
+    return 0;
+}
+
+// ── Print list ───────────────────────────────────────────
+void print_list(Node *head) {
+    while (head) {
+        printf("%d", head->data);
+        if (head->next) printf(" → ");
+        head = head->next;
+    }
+    printf(" → NULL\n");
+}
+
+// ── Free entire list ─────────────────────────────────────
+void free_list(Node **head) {
+    Node *cur = *head;
+    while (cur) {
+        Node *next = cur->next;
+        free(cur);
+        cur = next;
+    }
+    *head = NULL;
+}
+
+// ── Demo ─────────────────────────────────────────────────
+int main(void) {
+    Node *head = NULL;
+
+    insert_tail(&head, 10);
+    insert_tail(&head, 20);
+    insert_tail(&head, 30);
+    insert_head(&head, 5);
+    print_list(head);       // 5 → 10 → 20 → 30 → NULL
+
+    delete_value(&head, 20);
+    print_list(head);       // 5 → 10 → 30 → NULL
+
+    printf("Search 10: %s\n", search(head, 10) ? "found" : "not found");
+    printf("Search 99: %s\n", search(head, 99) ? "found" : "not found");
+
+    free_list(&head);
+    return 0;
+}
+```
+
+## Sample run
+
+```bash
+$ gcc -std=c11 -Wall -o ll linked_list.c
+$ ./ll
+5 → 10 → 20 → 30 → NULL
+5 → 10 → 30 → NULL
+Search 10: found
+Search 99: not found
+```
+
+## Complexity
+
+| Operation | Time | Space |
+|---|---|---|
+| Insert head | O(1) | O(1) |
+| Insert tail | O(n) | O(1) |
+| Delete by value | O(n) | O(1) |
+| Search | O(n) | O(1) |
+| Print | O(n) | O(1) |
+| Free | O(n) | O(1) |
