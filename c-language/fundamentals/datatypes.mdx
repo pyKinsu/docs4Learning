@@ -1,0 +1,138 @@
+---
+title: "Data Types"
+description: "All data types in C — primitive, derived, and user-defined"
+---
+
+# Data Types in C
+
+A **data type** defines what kind of data a variable can store. It helps the compiler understand how much memory to allocate and what operations are allowed on that data.
+
+Think of data types like different containers — a water bottle stores liquids, a box stores solids. Similarly, `int` stores whole numbers, `float` stores decimals, and `char` stores characters. Choosing the right data type means efficient memory use.
+
+---
+
+## Categories of Data Types
+
+| Category | Description | Examples |
+|---|---|---|
+| **Primitive** | Basic built-in types | `int`, `char`, `float`, `double`, `void` |
+| **Derived** | Built from primitive types | `array`, `pointer`, `function` |
+| **User-Defined** | Defined by the programmer | `struct`, `union`, `enum` |
+
+---
+
+## Primitive Data Types
+
+### Integer (`int`)
+
+- Stores whole numbers (positive, negative, or zero)
+- Can be `signed` (default) or `unsigned`
+- **Size:** 4 bytes
+- **Range (signed):** −2,147,483,648 to 2,147,483,647
+- **Range (unsigned):** 0 to 4,294,967,295
+
+**How to calculate range:**
+- Signed: min = −2^(n−1), max = 2^(n−1) − 1
+- Unsigned: min = 0, max = 2^n − 1
+
+**Out of range example:**
+```c
+#include <stdio.h>
+int main() {
+    int num = 2147483648;  // exceeds max signed int
+    printf("%d", num);
+    return 0;
+}
+// Output: -2147483648  (wraps around)
+```
+
+---
+
+### Character (`char`)
+
+- Stores a **single character** enclosed in single quotes: `'A'`, `'z'`, `'3'`
+- Internally stored as its ASCII value (an integer)
+- **Size:** 1 byte
+- **Range (signed):** −128 to 127 | **Range (unsigned):** 0 to 255
+
+**Real-world uses of `char`:**
+- Attendance: `'P'` for Present, `'A'` for Absent
+- Voting: `'Y'` for Yes, `'N'` for No
+- Product sizes: `'S'`, `'M'`, `'L'`
+
+---
+
+### Float (`float`)
+
+- Stores decimal numbers with **single precision** (~6–7 significant digits)
+- **Size:** 4 bytes | **Range:** 1.2E−38 to 3.4E+38
+- Used when decimal values are needed but high precision isn't critical
+
+---
+
+### Double (`double`)
+
+- Stores decimal numbers with **double precision** (~15–16 significant digits)
+- **Size:** 8 bytes | **Range:** 1.7E−308 to 1.7E+308
+- `long double` provides even higher precision (10–16 bytes)
+
+**Float vs Double precision:**
+```c
+#include <stdio.h>
+int main() {
+    float f  = 1.1234567890123456f;
+    double d = 1.1234567890123456;
+    printf("Float : %.15f\n", f);
+    printf("Double: %.15lf\n", d);
+    return 0;
+}
+// Output:
+// Float : 1.123456716537476   (less accurate)
+// Double: 1.123456789012346   (more accurate)
+```
+
+**When to use `double`:**
+
+| Domain | Use Case |
+|---|---|
+| Banking Software | Accurate money calculations |
+| GPS / Navigation | High-precision latitude and longitude |
+| Scientific Instruments | Measuring small/large physical values |
+| Medical Devices | Dosage and vital sign measurement |
+
+---
+
+### Void (`void`)
+
+`void` represents **no value**. It has three main uses:
+
+- **No return type:** `void display()` — function returns nothing
+- **Void pointer:** `void *ptr` — can hold address of any type
+- **No parameters:** `int main(void)` — function takes no arguments
+
+---
+
+## Data Modifiers
+
+Modifiers adjust the size or sign of a base data type:
+
+| Modifier | Effect |
+|---|---|
+| `short` | Reduces size of `int` to 2 bytes |
+| `long` | Increases size of `int` or `double` |
+| `signed` | Allows positive and negative values (default) |
+| `unsigned` | Allows only non-negative values; doubles the max range |
+
+---
+
+## Non-Primitive Data Types
+
+| Category | Type | Description |
+|---|---|---|
+| Derived | Array | Collection of same-type elements |
+| Derived | Pointer | Stores address of another variable |
+| Derived | Function | Block of reusable code |
+| User-Defined | Struct | Groups different types into one unit |
+| User-Defined | Union | Shares memory among all members |
+| User-Defined | Enum | Named integer constants |
+| User-Defined | Typedef | Creates an alias for an existing type |

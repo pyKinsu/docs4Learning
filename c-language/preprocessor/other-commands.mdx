@@ -1,0 +1,121 @@
+---
+title: "Other Preprocessor Commands"
+description: "#pragma, #error, #line, and predefined macros in C"
+---
+
+# Other Preprocessor Commands
+
+Beyond `#define`, `#include`, and `#ifdef`, the C preprocessor provides several other useful directives.
+
+---
+
+## `#pragma`
+
+`#pragma` provides implementation-specific (compiler-specific) instructions. The most widely-used are:
+
+**`#pragma once`** — modern include guard (prevents a header from being included multiple times):
+```c
+#pragma once
+
+// header declarations here
+```
+
+**`#pragma warning`** (MSVC) — suppress or enable specific warnings:
+```c
+#pragma warning(disable : 4996)   // suppress deprecated function warning
+```
+
+**`#pragma comment`** (MSVC) — link a library:
+```c
+#pragma comment(lib, "ws2_32.lib")
+```
+
+<Note>
+`#pragma` directives are not portable — they vary between compilers. Code using them may not compile on a different compiler.
+</Note>
+
+---
+
+## `#error`
+
+Forces a **compile-time error** with a custom message. Useful for catching configuration mistakes:
+
+```c
+#include <stdio.h>
+
+#ifndef MAX_SIZE
+    #error "MAX_SIZE must be defined before including this file!"
+#endif
+
+int arr[MAX_SIZE];
+```
+
+If `MAX_SIZE` is not defined, compilation stops immediately with the specified message.
+
+---
+
+## `#line`
+
+Changes the line number (and optionally the filename) reported by the compiler in error messages:
+
+```c
+#line 100 "myfile.c"
+// Compiler will now report the next line as line 100 in "myfile.c"
+```
+
+Mainly used by code-generation tools to keep error messages pointing to the original source.
+
+---
+
+## Predefined Macros
+
+The C standard defines several macros that are automatically available in every program:
+
+| Macro | Type | Description |
+|---|---|---|
+| `__FILE__` | `char *` | Name of the current source file |
+| `__LINE__` | `int` | Current line number |
+| `__DATE__` | `char *` | Compilation date (`"Jun 13 2026"`) |
+| `__TIME__` | `char *` | Compilation time (`"14:30:00"`) |
+| `__func__` | `char *` | Current function name (C99+) |
+| `__STDC__` | `int` | 1 if the compiler conforms to the C standard |
+
+**Example:**
+```c
+#include <stdio.h>
+
+void myFunction() {
+    printf("Function : %s\n", __func__);
+    printf("File     : %s\n", __FILE__);
+    printf("Line     : %d\n", __LINE__);
+    printf("Compiled : %s at %s\n", __DATE__, __TIME__);
+}
+
+int main() {
+    myFunction();
+    return 0;
+}
+```
+
+**Output (example):**
+```
+Function : myFunction
+File     : main.c
+Line     : 5
+Compiled : Jun 13 2026 at 14:30:00
+```
+
+These are very useful for debugging and logging.
+
+---
+
+## `#undef`
+
+Remove a previously defined macro:
+
+```c
+#define LIMIT 100
+// ... use LIMIT ...
+#undef LIMIT
+// LIMIT is no longer defined from here
+```

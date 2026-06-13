@@ -1,0 +1,126 @@
+---
+title: "Structure vs Union"
+description: "Key differences between struct and union in C"
+---
+
+# Structure vs Union in C
+
+Both `struct` and `union` are user-defined data types in C that group multiple members together. They differ fundamentally in **how memory is allocated** and **how members are accessed**.
+
+---
+
+## Comparison Table
+
+| Feature | Structure (`struct`) | Union (`union`) |
+|---|---|---|
+| **Keyword** | `struct` | `union` |
+| **Memory** | Each member gets its **own memory** | All members **share the same memory** |
+| **Size** | Sum of all member sizes (+ padding) | Size of the **largest** member |
+| **Value preservation** | All members hold their values simultaneously | Only the **last-written** member is valid |
+| **Access** | Multiple members accessible at once | Only one member valid at a time |
+| **Initialization** | Multiple members can be initialized | Only the **first** member can be initialized |
+| **Use case** | Group related fields of different types | Store one of several types at a time |
+
+---
+
+## Memory Illustration
+
+```c
+struct S {
+    int   a;    // 4 bytes
+    float b;    // 4 bytes
+    char  c;    // 1 byte
+};
+// sizeof(struct S) ≈ 12 bytes (with padding)
+// Each member at a different address
+```
+
+```c
+union U {
+    int   a;    // 4 bytes
+    float b;    // 4 bytes
+    char  c;    // 1 byte
+};
+// sizeof(union U) = 4 bytes (largest member)
+// All members share the same address
+```
+
+---
+
+## Example: Side by Side
+
+```c
+#include <stdio.h>
+
+struct S { int a; float b; };
+union  U { int a; float b; };
+
+int main() {
+    struct S s;
+    union  U u;
+
+    s.a = 10;  s.b = 3.14f;
+    u.a = 10;  u.b = 3.14f;
+
+    // struct: both values preserved
+    printf("Struct: a=%d, b=%.2f\n", s.a, s.b);
+
+    // union: only b is valid (overwrote a)
+    printf("Union : a=%d, b=%.2f\n", u.a, u.b);
+
+    printf("Size of struct S = %lu bytes\n", sizeof(s));
+    printf("Size of union  U = %lu bytes\n", sizeof(u));
+
+    return 0;
+}
+```
+
+**Output:**
+```
+Struct: a=10, b=3.14
+Union : a=1078523331, b=3.14    ← a is garbage (overwritten)
+Size of struct S = 8 bytes
+Size of union  U = 4 bytes
+```
+
+---
+
+## Enum in C
+
+An **enum** (Enumeration) is a user-defined type that assigns **meaningful names to integer constants**. It makes code more readable.
+
+```c
+enum Week {
+    Monday,     // 0
+    Tuesday,    // 1
+    Wednesday,  // 2
+    Thursday,   // 3
+    Friday,     // 4
+    Saturday,   // 5
+    Sunday      // 6
+};
+```
+
+By default, the first constant = 0, and each subsequent one increments by 1.
+
+**Custom values:**
+```c
+enum Level {
+    LOW    = 1,
+    MEDIUM = 5,
+    HIGH   = 10
+};
+```
+
+**Complete example:**
+```c
+#include <stdio.h>
+
+enum Week { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
+
+int main() {
+    enum Week today = Wednesday;
+    printf("Day number: %d", today);  // Output: 2
+    return 0;
+}
+```

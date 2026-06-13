@@ -1,0 +1,96 @@
+---
+title: "Macros vs Functions"
+description: "When to use macros and when to use functions in C"
+---
+
+# Macros vs Functions in C
+
+Both macros and functions let you reuse code — but they work very differently and each has strengths and weaknesses.
+
+---
+
+## Side-by-Side Comparison
+
+| Feature | Macro (`#define`) | Function |
+|---|---|---|
+| **Processed by** | Preprocessor (before compile) | Compiler |
+| **Type checking** | None — no types at all | Full type checking |
+| **Speed** | Faster — code is inlined | Slight overhead (call + return) |
+| **Code size** | Larger — expands at every call site | Smaller — single definition |
+| **Debugging** | Hard — no name in the binary | Easy — shows in stack trace |
+| **Side effects** | Possible — arguments evaluated multiple times | None — args evaluated once |
+| **Scope** | File-wide | Follows normal C scope rules |
+| **Recursion** | Not possible | Yes |
+| **Return value** | Expands to an expression | Uses `return` statement |
+
+---
+
+## The Side Effect Problem
+
+A macro evaluates its argument expression **every time it appears** in the expansion:
+
+```c
+#define SQUARE(x)  ((x) * (x))
+
+int i = 3;
+int result = SQUARE(i++);
+// Expands to: ((i++) * (i++))  — i incremented TWICE → undefined behavior!
+```
+
+A function does not have this problem:
+
+```c
+int square(int x) { return x * x; }
+
+int i = 3;
+int result = square(i++);   // i++ evaluated once → result = 9, i = 4
+```
+
+---
+
+## Example: Same Task, Two Ways
+
+**As a macro:**
+```c
+#define MAX(a, b)  ((a) > (b) ? (a) : (b))
+```
+
+**As a function:**
+```c
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+```
+
+The function is safer and debuggable; the macro is slightly faster and works on any comparable type.
+
+---
+
+## When to Use Each
+
+**Use a macro when:**
+- You need a simple constant (`#define PI 3.14159`)
+- You want to work on any type without templates (`MAX(a, b)`)
+- You need compile-time conditional code (`#ifdef DEBUG`)
+- You need include guards (`#ifndef HEADER_H`)
+
+**Use a function when:**
+- The logic is complex or more than one line
+- You need type safety
+- The argument might have side effects
+- You need recursion
+- Debugging matters
+
+---
+
+## `inline` Functions (C99+)
+
+C99 introduced `inline` functions — they give you function-level safety **and** macro-level speed:
+
+```c
+static inline int square(int x) {
+    return x * x;
+}
+```
+
+The compiler can expand the function body at the call site (like a macro) while still enforcing types and proper argument evaluation. For most modern C code, `inline` functions are preferred over functional macros.

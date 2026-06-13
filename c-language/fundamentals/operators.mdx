@@ -1,0 +1,207 @@
+---
+title: "Operators"
+description: "All operator types in C with examples and practice problems"
+---
+
+# Operators in C
+
+An **operator** is a symbol that tells the compiler to perform a specific operation on one or more **operands** (variables or values).
+
+```c
+int sum = a + b;
+// '+' is the operator; a and b are operands
+```
+
+---
+
+## Arithmetic Operators
+
+Used to perform mathematical operations:
+
+| Operator | Name | Example (a=10, b=3) | Result |
+|---|---|---|---|
+| `+` | Addition | `a + b` | `13` |
+| `-` | Subtraction | `a - b` | `7` |
+| `*` | Multiplication | `a * b` | `30` |
+| `/` | Division | `a / b` | `3` (integer division) |
+| `%` | Modulus | `a % b` | `1` (remainder) |
+
+---
+
+## Assignment Operators
+
+Assign values to variables. The right-hand side is evaluated first, then assigned to the left.
+
+```c
+int a = 10;           // simple assignment
+int result = a + b;   // expression assigned to result
+```
+
+**Chained assignment:**
+```c
+int a, b;
+a = b = 20;   // b gets 20, then a gets b (both become 20)
+```
+
+**Compound assignment:**
+```c
+a += 5;   // a = a + 5
+a -= 3;   // a = a - 3
+a *= 2;   // a = a * 2
+a /= 4;   // a = a / 4
+a %= 3;   // a = a % 3
+```
+
+---
+
+## Relational Operators
+
+Compare two values. Result is `1` (true) or `0` (false):
+
+| Operator | Description | Example (a=10, b=5) | Result |
+|---|---|---|---|
+| `==` | Equal to | `a == b` | `0` (false) |
+| `!=` | Not equal to | `a != b` | `1` (true) |
+| `>` | Greater than | `a > b` | `1` |
+| `<` | Less than | `a < b` | `0` |
+| `>=` | Greater than or equal | `a >= b` | `1` |
+| `<=` | Less than or equal | `a <= b` | `0` |
+
+---
+
+## Logical Operators
+
+Combine multiple conditions:
+
+| Operator | Name | Meaning |
+|---|---|---|
+| `&&` | Logical AND | True if **both** conditions are true |
+| `\|\|` | Logical OR | True if **at least one** condition is true |
+| `!` | Logical NOT | Inverts the condition |
+
+```c
+int age = 20, hasLicense = 1;
+if (age >= 18 && hasLicense == 1)
+    printf("Eligible to drive");
+```
+
+---
+
+## Bitwise Operators
+
+Operate at the binary (bit) level:
+
+| Operator | Name | Description |
+|---|---|---|
+| `&` | Bitwise AND | 1 only if both bits are 1 |
+| `\|` | Bitwise OR | 1 if either bit is 1 |
+| `^` | Bitwise XOR | 1 if exactly one bit is 1 |
+| `~` | Bitwise NOT | Flips all bits |
+| `<<` | Left Shift | Shifts bits left, fills with 0s |
+| `>>` | Right Shift | Shifts bits right |
+
+**Example:**
+```c
+int a = 12;   // binary: 01100
+int b = 25;   // binary: 11001
+
+printf("%d", a & b);   // 01000 = 8
+printf("%d", a | b);   // 11101 = 29
+printf("%d", a ^ b);   // 10101 = 21
+printf("%d", a << 1);  // 11000 = 24 (shift left by 1)
+printf("%d", a >> 1);  // 00110 = 6  (shift right by 1)
+```
+
+---
+
+## Increment / Decrement Operators
+
+| Operator | Type | Effect |
+|---|---|---|
+| `++a` | Pre-increment | Increment first, then use |
+| `a++` | Post-increment | Use first, then increment |
+| `--a` | Pre-decrement | Decrement first, then use |
+| `a--` | Post-decrement | Use first, then decrement |
+
+```c
+int a = 5;
+printf("%d", ++a);  // prints 6 (increments before print)
+printf("%d", a++);  // prints 6 (prints then increments to 7)
+printf("%d", a);    // prints 7
+```
+
+---
+
+## Practice Programs
+
+**Problem 1: Sum, Difference, Product, Quotient, Remainder**
+```c
+#include <stdio.h>
+int main() {
+    int a, b;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+    printf("Sum       = %d\n", a + b);
+    printf("Difference= %d\n", a - b);
+    printf("Product   = %d\n", a * b);
+    printf("Quotient  = %d\n", a / b);
+    printf("Remainder = %d\n", a % b);
+    return 0;
+}
+```
+
+**Problem 2: Average of Three Numbers**
+```c
+#include <stdio.h>
+int main() {
+    float a, b, c;
+    printf("Enter three numbers: ");
+    scanf("%f %f %f", &a, &b, &c);
+    float avg = (a + b + c) / 3;
+    printf("Average = %.2f", avg);
+    return 0;
+}
+```
+
+**Problem 3: Convert Days into Years, Weeks, Days**
+```c
+#include <stdio.h>
+int main() {
+    int days, years, weeks, remaining;
+    printf("Enter total days: ");
+    scanf("%d", &days);
+    years     = days / 365;
+    weeks     = (days % 365) / 7;
+    remaining = (days % 365) % 7;
+    printf("Years: %d, Weeks: %d, Days: %d", years, weeks, remaining);
+    return 0;
+}
+```
+
+**Problem 4: Check Even or Odd**
+```c
+#include <stdio.h>
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    if (num % 2 == 0)
+        printf("Even");
+    else
+        printf("Odd");
+    return 0;
+}
+```
+
+**Problem 5: Simple Interest Calculator**
+```c
+#include <stdio.h>
+int main() {
+    float p, r, t, si;
+    printf("Enter Principal, Rate, Time: ");
+    scanf("%f %f %f", &p, &r, &t);
+    si = (p * r * t) / 100;
+    printf("Simple Interest = %.2f", si);
+    return 0;
+}
+```

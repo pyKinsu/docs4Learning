@@ -1,0 +1,115 @@
+---
+title: "Structures in C"
+description: "User-defined data types using struct in C"
+---
+
+# Structures in C
+
+A **structure** is a user-defined data type that groups variables of **different data types** under a single name. Unlike arrays (which store only same-type elements), structures can hold mixed types together.
+
+Each member of a structure has its **own separate memory** and is accessed using the **dot operator** (`.`).
+
+---
+
+## Syntax
+
+```c
+struct StructureName {
+    data_type member1;
+    data_type member2;
+    ...
+    data_type memberN;
+};
+```
+
+---
+
+## Declaring a Structure Variable
+
+```c
+struct Student s1;   // s1 is a structure variable of type Student
+```
+
+---
+
+## Accessing Members
+
+```c
+s1.rollNo = 101;
+s1.marks  = 89.5;
+```
+
+---
+
+## Complete Example
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+struct Student {
+    char name[20];
+    int  roll;
+    float marks;
+};
+
+int main() {
+    struct Student s1;
+
+    printf("Enter name\n");
+    fgets(s1.name, sizeof(s1.name), stdin);
+    s1.name[strcspn(s1.name, "\n")] = '\0';
+
+    printf("Enter Roll\n");
+    scanf("%d", &s1.roll);
+
+    printf("Enter Marks\n");
+    scanf("%f", &s1.marks);
+
+    printf("\nStudent Records:\n");
+    printf("Name : %s\n", s1.name);
+    printf("Roll : %d\n", s1.roll);
+    printf("Marks: %.2f\n", s1.marks);
+
+    return 0;
+}
+```
+
+---
+
+## Array of Structures
+
+Store multiple records using an array of structures:
+
+```c
+struct Student students[3];
+
+students[0].roll = 101;
+students[1].roll = 102;
+students[2].roll = 103;
+```
+
+---
+
+## Structure vs Array
+
+| Feature | Array | Structure |
+|---|---|---|
+| Data types | Same type only | Different types allowed |
+| Access | `arr[i]` | `var.member` |
+| Use case | List of same values | Group of related fields |
+
+---
+
+## `typedef` with Structures
+
+Use `typedef` to avoid writing `struct` every time:
+
+```c
+typedef struct {
+    char name[20];
+    int roll;
+} Student;
+
+Student s1;   // no need to write 'struct Student'
+```

@@ -1,0 +1,123 @@
+---
+title: "Recursive Functions"
+description: "Understanding recursion with examples in C"
+---
+
+# Recursive Functions in C
+
+A **recursive function** is a function that **calls itself** directly or indirectly to solve a problem. It is useful when a problem can be broken down into smaller subproblems of the same type.
+
+---
+
+## Key Concepts
+
+- Every recursive function must have a **base case** — a condition that stops the recursion
+- Without a base case, the function calls itself infinitely → **stack overflow**
+
+---
+
+## Types of Recursion
+
+| Type | Description |
+|---|---|
+| **Direct Recursion** | Function calls itself directly |
+| **Indirect Recursion** | Function A calls Function B, and B calls A |
+
+---
+
+## General Structure
+
+```c
+return_type function_name(parameters) {
+    if (base_condition) {
+        return value;         // stop recursion
+    } else {
+        return function_name(modified_parameters);  // recursive call
+    }
+}
+```
+
+---
+
+## Example 1: Factorial
+
+```c
+#include <stdio.h>
+
+int factorial(int n) {
+    if (n == 0)           // base case
+        return 1;
+    else
+        return n * factorial(n - 1);   // recursive call
+}
+
+int main() {
+    int num = 5;
+    printf("Factorial of %d = %d", num, factorial(num));
+    return 0;
+}
+// Output: Factorial of 5 = 120
+```
+
+**How it works for `factorial(5)`:**
+```
+factorial(5) = 5 * factorial(4)
+             = 5 * 4 * factorial(3)
+             = 5 * 4 * 3 * factorial(2)
+             = 5 * 4 * 3 * 2 * factorial(1)
+             = 5 * 4 * 3 * 2 * 1 * factorial(0)
+             = 5 * 4 * 3 * 2 * 1 * 1 = 120
+```
+
+---
+
+## Example 2: Fibonacci Series
+
+```c
+#include <stdio.h>
+
+int fibonacci(int n) {
+    if (n == 0) return 0;       // base case
+    else if (n == 1) return 1;  // base case
+    else
+        return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    int terms = 7;
+    printf("Fibonacci: ");
+    for (int i = 0; i < terms; i++) {
+        printf("%d ", fibonacci(i));
+    }
+    return 0;
+}
+// Output: Fibonacci: 0 1 1 2 3 5 8
+```
+
+---
+
+## Advantages of Recursion
+
+- Reduces code size for problems like tree traversals, factorial, Fibonacci
+- Makes code more readable for mathematically recursive problems
+- Naturally maps to divide-and-conquer algorithms
+
+---
+
+## Disadvantages of Recursion
+
+- Consumes more memory — each call adds a new frame to the call stack
+- Can lead to **stack overflow** if the base case is missing or wrong
+- Generally slower than an iterative solution for the same problem
+
+---
+
+## Recursion vs Iteration
+
+| | Recursion | Iteration |
+|---|---|---|
+| Approach | Function calls itself | Uses loops |
+| Memory | More (call stack) | Less |
+| Speed | Slower | Faster |
+| Readability | Cleaner for recursive problems | Better for simple repetition |
+| Risk | Stack overflow | Infinite loop |

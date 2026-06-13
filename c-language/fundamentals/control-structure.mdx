@@ -1,0 +1,290 @@
+---
+title: "Control Structure"
+description: "Decision-making, looping, and jumping statements in C"
+---
+
+# Control Structure in C
+
+**Control structures** determine how a program runs its instructions. They allow the program to make decisions, repeat steps, or jump to different parts of the code based on conditions.
+
+A control structure is a combination of:
+- **Decision-making statements** — `if`, `else`, `switch`
+- **Looping statements** — `for`, `while`, `do-while`
+- **Jumping statements** — `break`, `continue`, `goto`, `return`
+
+---
+
+## Decision-Making Statements
+
+### 1. `if` Statement
+
+Executes a block only when the condition is true.
+
+```c
+if (condition) {
+    // executes if condition is true
+}
+```
+
+**Example:**
+```c
+#include <stdio.h>
+int main() {
+    int age = 18;
+    if (age >= 18) {
+        printf("Eligible to Vote\n");
+        printf("Welcome\n");
+    }
+    return 0;
+}
+```
+Output: `Eligible to Vote` and `Welcome`
+
+<Note>
+Without curly braces, only the **immediately following** line is part of the `if`. The rest always executes.
+</Note>
+
+---
+
+### 2. `if-else` Statement
+
+```c
+if (condition) {
+    // true block
+} else {
+    // false block
+}
+```
+
+**Example:**
+```c
+int num = 5;
+if (num % 2 == 0) {
+    printf("Even number");
+} else {
+    printf("Odd number");
+}
+// Output: Odd number
+```
+
+---
+
+### 3. `if-else if-else` Ladder
+
+Check multiple conditions in sequence:
+
+```c
+int marks = 72;
+if (marks >= 90) {
+    printf("Grade A\n");
+} else if (marks >= 75) {
+    printf("Grade B\n");
+} else if (marks >= 50) {
+    printf("Grade C\n");
+} else {
+    printf("Fail\n");
+}
+// Output: Grade C
+```
+
+---
+
+### 4. Nested `if`
+
+An `if` inside another `if`:
+
+```c
+int age = 25;
+char citizen = 'Y';
+if (age >= 18) {
+    if (citizen == 'Y') {
+        printf("You can vote in India.\n");
+    }
+}
+```
+
+---
+
+### 5. `switch-case`
+
+Use when choosing one option from many based on a single value:
+
+```c
+switch (expression) {
+    case constant1:
+        // code
+        break;
+    case constant2:
+        // code
+        break;
+    default:
+        // runs if no case matches
+}
+```
+
+**Rules:**
+- Expression must be `int`, `char`, or `enum` (NOT `float`)
+- Case labels must be constants
+- `break` stops the switch from falling through to the next case
+- `default` is optional
+
+**Example:**
+```c
+#include <stdio.h>
+int main() {
+    int day = 3;
+    switch (day) {
+        case 1: printf("Monday\n");    break;
+        case 2: printf("Tuesday\n");   break;
+        case 3: printf("Wednesday\n"); break;
+        case 4: printf("Thursday\n");  break;
+        case 5: printf("Friday\n");    break;
+        default: printf("Weekend\n");
+    }
+    return 0;
+}
+// Output: Wednesday
+```
+
+**Fall-through (no break):**
+```c
+int x = 2;
+switch (x) {
+    case 1: printf("One\n");
+    case 2: printf("Two\n");   // no break → continues
+    case 3: printf("Three\n"); break;
+}
+// Output:
+// Two
+// Three
+```
+
+---
+
+## Looping Statements
+
+### `while` Loop
+
+Checks condition **before** executing the body:
+
+```c
+int i = 1;
+while (i <= 5) {
+    printf("%d\n", i);
+    i++;
+}
+```
+
+### `do-while` Loop
+
+Executes the body **at least once**, then checks condition:
+
+```c
+int i = 1;
+do {
+    printf("%d\n", i);
+    i++;
+} while (i <= 5);
+```
+
+### `for` Loop
+
+Best when the number of iterations is known:
+
+```c
+for (int i = 1; i <= 5; i++) {
+    printf("%d\n", i);
+}
+```
+
+### Nested Loops
+
+```c
+for (int i = 1; i <= 3; i++) {
+    for (int j = 1; j <= 3; j++) {
+        printf("%d %d\n", i, j);
+    }
+}
+```
+
+### Infinite Loop
+
+```c
+while (1) { printf("Running...\n"); }
+for (;;) { printf("Running...\n"); }
+```
+
+---
+
+## Jumping Statements
+
+### `break`
+
+Exits a loop or switch immediately:
+
+```c
+for (int i = 1; i <= 5; i++) {
+    if (i == 3) break;
+    printf("%d\n", i);
+}
+// Output: 1  2
+```
+
+### `continue`
+
+Skips the rest of the current iteration:
+
+```c
+for (int i = 1; i <= 5; i++) {
+    if (i == 3) continue;
+    printf("%d\n", i);
+}
+// Output: 1  2  4  5
+```
+
+### `goto`
+
+Transfers control to a labeled statement (use sparingly):
+
+```c
+#include <stdio.h>
+int main() {
+    int num = 2;
+    if (num == 2) goto label;
+    printf("This will be skipped\n");
+label:
+    printf("Jumped here using goto\n");
+    return 0;
+}
+// Output: Jumped here using goto
+```
+
+### `return`
+
+Exits a function and optionally returns a value:
+
+```c
+int add(int a, int b) {
+    return a + b;
+}
+int main() {
+    printf("%d\n", add(3, 4));  // Output: 7
+    return 0;
+}
+```
+
+### `exit()`
+
+Terminates the entire program immediately. Requires `#include <stdlib.h>`:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    printf("Start\n");
+    exit(0);
+    printf("This will not execute\n");
+    return 0;
+}
+// Output: Start
+```

@@ -1,0 +1,106 @@
+---
+title: "Passing Pointers to Functions"
+description: "How to pass pointers to functions to modify original values"
+---
+
+# Passing Pointers to Functions in C
+
+When you pass a **pointer** to a function, you are sending the **address** of a variable. This allows the function to directly read or **modify the original variable** — unlike normal pass-by-value where only a copy is sent.
+
+---
+
+## Syntax
+
+```c
+void function_name(int *ptr) {
+    // use *ptr to access or modify the original value
+}
+```
+
+---
+
+## Example: Modify a Variable via Pointer
+
+```c
+#include <stdio.h>
+
+void changeValue(int *p) {
+    *p = 100;   // dereference to change original
+}
+
+int main() {
+    int x = 10;
+    printf("Before: x = %d\n", x);
+
+    changeValue(&x);   // pass address of x
+
+    printf("After : x = %d\n", x);
+    return 0;
+}
+```
+
+**Output:**
+```
+Before: x = 10
+After : x = 100
+```
+
+---
+
+## Example: Swap Two Numbers
+
+Without pointers, swapping inside a function has no effect on the originals. With pointers:
+
+```c
+#include <stdio.h>
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x = 5, y = 10;
+    printf("Before: x=%d, y=%d\n", x, y);
+    swap(&x, &y);
+    printf("After : x=%d, y=%d\n", x, y);
+    return 0;
+}
+```
+
+**Output:**
+```
+Before: x=5, y=10
+After : x=10, y=5
+```
+
+---
+
+## Pass by Value vs Pass by Reference
+
+```c
+void noEffect(int n) {
+    n = 999;           // only changes local copy
+}
+
+void withEffect(int *n) {
+    *n = 999;          // changes original
+}
+
+int main() {
+    int a = 10, b = 10;
+    noEffect(a);       // a is still 10
+    withEffect(&b);    // b becomes 999
+    printf("%d %d", a, b);   // Output: 10 999
+}
+```
+
+---
+
+## Key Points
+
+- Pass `&variable` at the call site to send the address
+- Use `*ptr` inside the function to access or modify the value
+- This is how C achieves **pass-by-reference** behaviour
+- Especially useful for functions that need to return multiple values

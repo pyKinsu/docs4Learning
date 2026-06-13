@@ -1,0 +1,122 @@
+---
+title: "Using #include"
+description: "How to include header files in C programs"
+---
+
+# `#include` Directive in C
+
+The `#include` directive tells the preprocessor to **copy the contents of another file** into the current source file before compilation. This is how you bring standard library functions and your own header files into a program.
+
+---
+
+## Syntax
+
+**For standard (system) headers — use angle brackets:**
+```c
+#include <header_file.h>
+```
+
+**For your own (user-defined) headers — use double quotes:**
+```c
+#include "my_header.h"
+```
+
+The difference: angle brackets search the system include directories; double quotes search the current directory first, then system directories.
+
+---
+
+## Common Standard Header Files
+
+| Header | Contents |
+|---|---|
+| `<stdio.h>` | `printf()`, `scanf()`, `fopen()`, file I/O |
+| `<stdlib.h>` | `malloc()`, `free()`, `exit()`, `rand()` |
+| `<string.h>` | `strlen()`, `strcpy()`, `strcat()`, `strcmp()` |
+| `<math.h>` | `sqrt()`, `pow()`, `abs()`, `ceil()`, `floor()` |
+| `<ctype.h>` | `isalpha()`, `isdigit()`, `toupper()`, `tolower()` |
+| `<time.h>` | `time()`, `clock()` |
+| `<stdbool.h>` | `bool`, `true`, `false` (C99+) |
+
+---
+
+## Example: Including Multiple Headers
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
+int main() {
+    // stdio.h
+    printf("Hello!\n");
+
+    // math.h
+    printf("sqrt(16) = %.0f\n", sqrt(16));
+
+    // string.h
+    char name[] = "Vishal";
+    printf("Length = %d\n", strlen(name));
+
+    // stdlib.h
+    int r = rand() % 100;
+    printf("Random = %d\n", r);
+
+    return 0;
+}
+```
+
+---
+
+## Creating Your Own Header File
+
+**`mymath.h`:**
+```c
+#ifndef MYMATH_H
+#define MYMATH_H
+
+int square(int x);
+int cube(int x);
+
+#endif
+```
+
+**`mymath.c`:**
+```c
+#include "mymath.h"
+
+int square(int x) { return x * x; }
+int cube(int x)   { return x * x * x; }
+```
+
+**`main.c`:**
+```c
+#include <stdio.h>
+#include "mymath.h"   // user header — double quotes
+
+int main() {
+    printf("Square of 4 = %d\n", square(4));
+    printf("Cube   of 3 = %d\n", cube(3));
+    return 0;
+}
+```
+
+---
+
+## Include Guards
+
+Header files use include guards to prevent being included more than once (which would cause redefinition errors):
+
+```c
+#ifndef MY_HEADER_H
+#define MY_HEADER_H
+
+// declarations here
+
+#endif
+```
+
+Or the modern equivalent (most compilers support it):
+```c
+#pragma once
+```

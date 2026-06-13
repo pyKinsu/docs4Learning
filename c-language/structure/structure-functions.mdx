@@ -1,0 +1,116 @@
+---
+title: "Passing Structures to Functions"
+description: "Pass by value, pass by reference, and return structures from functions"
+---
+
+# Passing Structures to Functions
+
+You can pass a structure to a function the same way you pass any variable. There are three approaches:
+
+1. Pass by Value
+2. Pass by Reference (using pointer)
+3. Return a structure from a function
+
+---
+
+## 1. Pass by Value
+
+A **copy** of the structure is sent to the function. Changes made inside the function do **not** affect the original.
+
+```c
+#include <stdio.h>
+
+struct Student {
+    char name[20];
+    int roll;
+    float marks;
+};
+
+void display(struct Student s) {
+    s.marks = 99.9f;   // modifies only the local copy
+    printf("Inside : %s %d %.2f\n", s.name, s.roll, s.marks);
+}
+
+int main() {
+    struct Student s1 = {"Vishal", 101, 75.5};
+    display(s1);
+    printf("Outside: %.2f\n", s1.marks);   // original unchanged
+    return 0;
+}
+```
+
+**Output:**
+```
+Inside : Vishal 101 99.90
+Outside: 75.50
+```
+
+---
+
+## 2. Pass by Reference (Using Pointer)
+
+The **address** of the structure is sent. Changes made inside the function **do** affect the original. Members are accessed using the **arrow operator** (`->`).
+
+```c
+#include <stdio.h>
+
+struct Student {
+    char name[20];
+    int roll;
+    float marks;
+};
+
+void update(struct Student *s) {
+    s->marks = 99.9f;   // modifies the original
+}
+
+int main() {
+    struct Student s1 = {"Vishal", 101, 75.5};
+    update(&s1);   // pass address
+    printf("After update: %.2f\n", s1.marks);
+    return 0;
+}
+```
+
+**Output:**
+```
+After update: 99.90
+```
+
+---
+
+## 3. Return a Structure from a Function
+
+```c
+#include <stdio.h>
+
+struct Student {
+    char name[20];
+    int roll;
+    float marks;
+};
+
+struct Student getData() {
+    struct Student s = {"Kumar", 102, 80.5};
+    return s;
+}
+
+int main() {
+    struct Student s1 = getData();
+    printf("%s - %d - %.2f\n", s1.name, s1.roll, s1.marks);
+    return 0;
+}
+// Output: Kumar - 102 - 80.50
+```
+
+---
+
+## Comparison
+
+| Method | Copies Data? | Modifies Original? | Speed |
+|---|---|---|---|
+| Pass by Value | Yes | No | Slower (large structs) |
+| Pass by Reference | No | Yes | Faster |
+| Return struct | Yes (new copy) | N/A | Moderate |
+
+**Best practice:** For large structures, always prefer passing by reference using a pointer. Use `const struct Type *ptr` if you want to read without modifying.

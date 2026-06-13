@@ -1,0 +1,187 @@
+---
+title: "C Programs — Chapter 1"
+description: "Practice programs covering fundamentals of C programming"
+---
+
+# C Programs — Chapter 1
+
+Practice programs covering the fundamentals of C — input/output, operators, conditions, and basic calculations.
+
+---
+
+### 1. Display "Hello World"
+
+```c
+#include <stdio.h>
+int main() {
+    printf("Hello, World");
+    return 0;
+}
+```
+
+---
+
+### 2. Display Your Name
+
+```c
+#include <stdio.h>
+int main() {
+    printf("Your Name Here");
+    return 0;
+}
+```
+
+---
+
+### 3. Take Student Details and Display Them
+
+```c
+#include <stdio.h>
+#include <string.h>
+int main() {
+    char name[20];
+    int rollno;
+    float marks;
+    char grade;
+
+    printf("Enter Name\n");
+    fgets(name, sizeof(name), stdin);
+    name[strcspn(name, "\n")] = '\0';
+
+    printf("Enter Roll Number\n");
+    scanf("%d", &rollno);
+
+    printf("Enter Marks\n");
+    scanf("%f", &marks);
+
+    getchar();  // flush newline from buffer
+
+    printf("Enter Grade\n");
+    grade = getchar();
+
+    printf("Name: %s\n", name);
+    printf("Roll: %d\n", rollno);
+    printf("Marks: %.2f\n", marks);
+    printf("Grade: %c\n", grade);
+
+    return 0;
+}
+```
+
+---
+
+### 4. Display ASCII Value of a Character
+
+```c
+#include <stdio.h>
+int main() {
+    char input;
+    printf("Enter any character\n");
+    input = getchar();
+    printf("ASCII Value: %d", input);
+    return 0;
+}
+```
+
+---
+
+### 5. Area of a Rectangle
+
+```c
+#include <stdio.h>
+int main() {
+    float length, breadth, area;
+    printf("Enter the length: ");
+    scanf("%f", &length);
+    printf("Enter the breadth: ");
+    scanf("%f", &breadth);
+    area = length * breadth;
+    printf("Area of rectangle: %.2f", area);
+    return 0;
+}
+```
+
+---
+
+### 6. Area of a Circle
+
+```c
+#include <stdio.h>
+int main() {
+    float radius, area;
+    const float PI = 3.14f;
+    printf("Enter the radius: ");
+    scanf("%f", &radius);
+    area = PI * radius * radius;
+    printf("Area of circle: %.2f", area);
+    return 0;
+}
+```
+
+---
+
+### 7. Simple Interest
+
+```c
+#include <stdio.h>
+int main() {
+    float p, r, t, si;
+    printf("Enter Principal: ");
+    scanf("%f", &p);
+    printf("Enter Rate: ");
+    scanf("%f", &r);
+    printf("Enter Time (years): ");
+    scanf("%f", &t);
+    si = (p * r * t) / 100;
+    printf("Simple Interest: %.2f", si);
+    return 0;
+}
+```
+
+---
+
+### 8. Electricity Bill Calculator
+
+Conditions:
+- First 100 units → ₹6.50 per unit
+- Above 100 units → ₹9.00 per unit
+
+```c
+#include <stdio.h>
+int main() {
+    int units;
+    float bill;
+    printf("Enter units consumed: ");
+    scanf("%d", &units);
+
+    if (units <= 100) {
+        bill = units * 6.50;
+    } else {
+        int extra = units - 100;
+        bill = (100 * 6.50) + (extra * 9.00);
+    }
+
+    printf("Electricity Bill = %.2f Rs", bill);
+    return 0;
+}
+```
+
+---
+
+### 9. Voting Eligibility
+
+```c
+#include <stdio.h>
+int main() {
+    int age;
+    printf("Enter your age: ");
+    scanf("%d", &age);
+
+    if (age >= 18) {
+        printf("You are eligible to vote.");
+    } else {
+        printf("You are not eligible to vote.");
+    }
+    return 0;
+}
+```

@@ -1,0 +1,122 @@
+---
+title: "Types of Arrays"
+description: "1D, 2D, and multi-dimensional arrays in C"
+---
+
+# Types of Arrays in C
+
+Arrays in C are classified by their **number of dimensions** — how many indices are needed to access an element.
+
+---
+
+## 1. One-Dimensional Array (1D)
+
+The simplest array — stores elements in a **single row**. One index is enough to access any element.
+
+**Syntax:**
+```c
+data_type array_name[size];
+```
+
+**Example:**
+```c
+#include <stdio.h>
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", numbers[i]);
+    }
+    return 0;
+}
+// Output: 10 20 30 40 50
+```
+
+---
+
+## 2. Two-Dimensional Array (2D)
+
+Stores elements in **rows and columns** — like a matrix or table. Two indices are needed: `[row][column]`.
+
+**Syntax:**
+```c
+data_type array_name[rows][columns];
+```
+
+**Example:**
+```c
+#include <stdio.h>
+int main() {
+    int matrix[2][3] = {{1, 2, 3}, {4, 5, 6}};
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+
+**Output:**
+```
+1 2 3
+4 5 6
+```
+
+**Memory layout of `matrix[2][3]`:**
+```
+       Col 0  Col 1  Col 2
+Row 0:   1      2      3
+Row 1:   4      5      6
+```
+
+---
+
+## 3. Multi-Dimensional Array
+
+Has **more than two dimensions**. Think of it as an array of 2D arrays. Used for complex data structures like 3D matrices or cubic grids.
+
+**Syntax of a 3D array:**
+```c
+data_type array_name[depth][rows][columns];
+```
+
+**Example:**
+```c
+#include <stdio.h>
+int main() {
+    int cube[2][2][2] = {
+        {{1, 2}, {3, 4}},
+        {{5, 6}, {7, 8}}
+    };
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            for (int k = 0; k < 2; k++) {
+                printf("%d ", cube[i][j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+
+**Output:**
+```
+1 2
+3 4
+
+5 6
+7 8
+```
+
+---
+
+## Comparison
+
+| Type | Dimensions | Access | Use Case |
+|---|---|---|---|
+| 1D | 1 | `arr[i]` | List of values |
+| 2D | 2 | `arr[i][j]` | Tables, matrices |
+| 3D | 3 | `arr[i][j][k]` | 3D grids, layered data |

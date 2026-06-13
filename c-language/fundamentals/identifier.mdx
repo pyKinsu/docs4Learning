@@ -1,0 +1,60 @@
+---
+title: "Identifier"
+description: "Rules and examples for naming identifiers in C"
+---
+
+# Identifier in C
+
+An **identifier** is the name used to identify variables, functions, arrays, structures, and other user-defined entities in a C program.
+
+Think of a contact list on your phone — the contact name is the identifier, and the phone number is the value stored at that name. Similarly, an identifier gives a name to a memory location.
+
+---
+
+## Rules for Identifiers
+
+- Can contain **letters** (A–Z, a–z), **digits** (0–9), and **underscore** (`_`)
+- Must **begin with a letter or underscore** — not a digit
+- **Cannot be a C keyword** (e.g. `int`, `for`, `while`)
+- Are **case-sensitive** — `total`, `Total`, and `TOTAL` are three different identifiers
+- **No special characters** allowed (`@`, `$`, `%`, `#`, etc.)
+- No spaces allowed in an identifier name
+
+---
+
+## Valid vs Invalid Identifiers
+
+| Identifier | Valid? | Reason |
+|---|---|---|
+| `age` | ✅ Valid | Letters only |
+| `_salary` | ✅ Valid | Starts with underscore |
+| `num1` | ✅ Valid | Letter followed by digit |
+| `1num` | ❌ Invalid | Starts with a digit |
+| `int` | ❌ Invalid | Reserved keyword |
+| `my var` | ❌ Invalid | Contains a space |
+| `@value` | ❌ Invalid | Special character |
+
+---
+
+## Example
+
+```c
+int age = 25;
+float salary = 50000.50;
+char grade = 'A';
+```
+
+Here, `age`, `salary`, and `grade` are **identifiers** — each names a memory location that stores its respective value.
+
+---
+
+## Key Point
+
+Identifiers are **case-sensitive** in C. This means:
+
+```c
+int total = 10;
+int Total = 20;
+int TOTAL = 30;
+// All three are different variables!
+```

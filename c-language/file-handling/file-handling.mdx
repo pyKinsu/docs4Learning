@@ -1,0 +1,121 @@
+---
+title: "File Handling in C"
+description: "Introduction to file handling — opening, reading, writing, and closing files"
+---
+
+# File Handling in C
+
+**File handling** allows you to store and access data permanently on disk. Unlike variables (which lose their values when the program ends), a file retains its contents even after the program closes.
+
+---
+
+## Steps in File Handling
+
+1. Declare a file pointer
+2. Open the file
+3. Perform read/write operations
+4. Close the file
+
+```c
+FILE *fp;                         // Step 1: declare file pointer
+fp = fopen("file.txt", "r");      // Step 2: open file
+// Step 3: read/write operations
+fclose(fp);                       // Step 4: close file
+```
+
+---
+
+## File Opening Modes
+
+| Mode | Description |
+|---|---|
+| `"r"` | Read — file must already exist |
+| `"w"` | Write — creates new file, or overwrites existing |
+| `"a"` | Append — adds data at the end of the file |
+| `"r+"` | Read + Write — file must exist |
+| `"w+"` | Read + Write — creates new or clears existing |
+| `"a+"` | Read + Append — read anywhere, write at end only |
+
+---
+
+## Common File Functions
+
+| Function | Purpose |
+|---|---|
+| `fopen()` | Open a file |
+| `fclose()` | Close a file |
+| `fprintf()` | Write formatted data |
+| `fscanf()` | Read formatted data |
+| `fputc()` | Write a single character |
+| `fgetc()` | Read a single character |
+| `fputs()` | Write a string |
+| `fgets()` | Read a string (line by line) |
+| `feof()` | Check if end of file is reached |
+
+---
+
+## Writing to a File
+
+```c
+FILE *fp = fopen("data.txt", "w");
+
+if (fp == NULL) {
+    printf("Error opening file!");
+    return 1;
+}
+
+fprintf(fp, "Hello World!\n");
+fputs("C Programming\n", fp);
+fputc('A', fp);
+
+fclose(fp);
+```
+
+---
+
+## Reading from a File
+
+```c
+FILE *fp = fopen("data.txt", "r");
+
+if (fp == NULL) {
+    printf("File not found!");
+    return 1;
+}
+
+char ch  = fgetc(fp);       // read one character
+char str[50];
+fgets(str, 50, fp);         // read one line
+
+int num;
+fscanf(fp, "%d", &num);     // read formatted value
+
+fclose(fp);
+```
+
+---
+
+## Appending to a File
+
+```c
+FILE *fp = fopen("data.txt", "a");
+
+fprintf(fp, "New line added!\n");
+fputs("More text\n", fp);
+
+fclose(fp);
+```
+
+---
+
+## Checking for NULL
+
+Always check if `fopen()` returned `NULL` — it means the file could not be opened (wrong path, no permissions, etc.):
+
+```c
+FILE *fp = fopen("test.txt", "r");
+if (fp == NULL) {
+    printf("Cannot open file.\n");
+    return 1;
+}
+```

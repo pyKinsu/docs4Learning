@@ -1,0 +1,91 @@
+---
+title: "Self-Referential Structures"
+description: "Structures that contain a pointer to themselves — the foundation of linked lists"
+---
+
+# Self-Referential Structures in C
+
+A **self-referential structure** is a structure that contains a **pointer to another structure of the same type**. This allows structures to be chained together, forming dynamic data structures like linked lists, trees, and graphs.
+
+In simple terms: one member of the structure points to another variable of the same structure type.
+
+---
+
+## Syntax
+
+```c
+struct Node {
+    int data;
+    struct Node *next;   // pointer to the same struct type
+};
+```
+
+---
+
+## Example: Two Linked Nodes
+
+```c
+#include <stdio.h>
+
+struct Node {
+    int data;
+    struct Node *next;   // self-referential pointer
+};
+
+int main() {
+    struct Node n1, n2;
+
+    n1.data = 10;
+    n2.data = 20;
+
+    n1.next = &n2;   // n1 points to n2
+    n2.next = NULL;  // last node — points to nothing
+
+    printf("n1 data = %d\n", n1.data);
+    printf("n2 data = %d\n", n1.next->data);  // access via pointer
+
+    return 0;
+}
+```
+
+**Output:**
+```
+n1 data = 10
+n2 data = 20
+```
+
+---
+
+## Visualising the Link
+
+```
+n1              n2
++------+----+   +------+------+
+|  10  | *--+-->|  20  | NULL |
++------+----+   +------+------+
+```
+
+`n1.next` holds the address of `n2`. Accessing `n1.next->data` gives `20`.
+
+---
+
+## Why Self-Referential Structures Matter
+
+They are the foundation of:
+
+| Data Structure | Description |
+|---|---|
+| **Singly Linked List** | Each node points to the next |
+| **Doubly Linked List** | Each node points to both next and previous |
+| **Binary Tree** | Each node has `left` and `right` child pointers |
+| **Graph (Adjacency List)** | Each node has a list of neighbour pointers |
+
+These are dynamic — they can grow and shrink at runtime, unlike arrays.
+
+---
+
+## Key Points
+
+- The pointer member must be `struct NodeName *` — a pointer to the same struct type
+- You cannot embed a struct inside itself (that would be infinite size), but a **pointer** to itself is fine
+- The last node in a chain always has its pointer set to `NULL`

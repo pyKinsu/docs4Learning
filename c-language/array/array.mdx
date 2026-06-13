@@ -1,0 +1,109 @@
+---
+title: "Arrays in C"
+description: "Introduction to arrays, syntax, and usage in C"
+---
+
+# Arrays in C
+
+An **array** is a collection of elements of the **same data type** stored in **contiguous (adjacent) memory locations**. Arrays let you store multiple values under a single variable name and access each one using an **index**.
+
+---
+
+## Key Features
+
+- Stores multiple elements of the same data type
+- Elements are stored in consecutive memory locations
+- Array indexing starts from **0**
+- Access elements using: `array_name[index]`
+
+---
+
+## Syntax
+
+```c
+data_type array_name[size];
+```
+
+**Examples:**
+```c
+int marks[5];              // declares an integer array of 5 elements
+float prices[10];          // float array of 10 elements
+char name[20];             // character array (string) of 20 chars
+```
+
+---
+
+## Initialization
+
+```c
+int marks[5] = {90, 85, 78, 92, 88};   // all elements specified
+int arr[5]   = {1, 2};                  // remaining elements default to 0
+int arr[]    = {10, 20, 30};            // size inferred automatically
+```
+
+---
+
+## Accessing Elements
+
+```c
+marks[0]  // 90 (first element)
+marks[4]  // 88 (last element)
+marks[2]  // 78 (third element)
+```
+
+---
+
+## Example: Print All Elements
+
+```c
+#include <stdio.h>
+
+int main() {
+    int marks[5] = {90, 85, 78, 92, 88};
+    for (int i = 0; i < 5; i++) {
+        printf("marks[%d] = %d\n", i, marks[i]);
+    }
+    return 0;
+}
+```
+
+**Output:**
+```
+marks[0] = 90
+marks[1] = 85
+marks[2] = 78
+marks[3] = 92
+marks[4] = 88
+```
+
+---
+
+## Memory Layout
+
+For `int marks[5]` (assuming `int` = 4 bytes):
+
+```
+Index:   [0]      [1]      [2]      [3]      [4]
+Value:   90       85       78       92       88
+Address: 1000     1004     1008     1012     1016
+```
+
+Each element occupies 4 bytes. The array name `marks` holds the address of the first element.
+
+---
+
+## Limitations
+
+- **Fixed size** — cannot grow or shrink dynamically after declaration
+- **Homogeneous** — all elements must be the same data type
+- **No bounds checking** — accessing outside the array causes undefined behavior
+
+---
+
+## Types of Arrays
+
+| Type | Description |
+|---|---|
+| **One-Dimensional (1D)** | A single row of elements |
+| **Two-Dimensional (2D)** | Rows and columns — like a matrix |
+| **Multi-Dimensional** | More than two dimensions |

@@ -1,0 +1,53 @@
+---
+title: "Keywords"
+description: "Reserved keywords in C and their significance"
+---
+
+# Keywords in C
+
+**Keywords** are reserved words that have a special, predefined meaning in the C language. You **cannot use them as identifiers** (variable names, function names, etc.) because the compiler treats them as part of its syntax.
+
+There are **32 keywords** defined in ANSI C.
+
+---
+
+## List of C Keywords
+
+| | | | |
+|---|---|---|---|
+| `auto` | `break` | `case` | `char` |
+| `const` | `continue` | `default` | `do` |
+| `double` | `else` | `enum` | `extern` |
+| `float` | `for` | `goto` | `if` |
+| `int` | `long` | `register` | `return` |
+| `short` | `signed` | `sizeof` | `static` |
+| `struct` | `switch` | `typedef` | `union` |
+| `unsigned` | `void` | `volatile` | `while` |
+
+---
+
+## Example
+
+```c
+int register;   // ❌ Invalid — 'register' is a keyword
+int reg;        // ✅ Valid
+```
+
+---
+
+## Common Keywords and Their Uses
+
+| Keyword | Use |
+|---|---|
+| `int`, `float`, `char`, `double` | Data type declarations |
+| `if`, `else`, `switch`, `case` | Decision making |
+| `for`, `while`, `do` | Looping |
+| `break`, `continue`, `return`, `goto` | Jump statements |
+| `struct`, `union`, `enum` | User-defined data types |
+| `const` | Declare a constant value |
+| `void` | No return value / no parameters |
+| `sizeof` | Get size of a data type or variable |
+
+<Note>
+Keywords are always **lowercase** in C. Writing `INT` or `While` is not a keyword — it would be treated as an identifier.
+</Note>

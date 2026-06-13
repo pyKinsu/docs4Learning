@@ -1,0 +1,132 @@
+---
+title: "File Operations"
+description: "Complete programs for writing to and reading from files in C"
+---
+
+# File Operations in C
+
+File operations follow four steps every time:
+1. Declare a file pointer
+2. Open the file with the appropriate mode
+3. Perform operations (read/write)
+4. Close the file
+
+---
+
+## 1. Writing to a File
+
+```c
+#include <stdio.h>
+
+int main() {
+    FILE *fp;
+
+    fp = fopen("write.txt", "w");   // open in write mode
+    if (fp == NULL) {
+        printf("Error opening file!\n");
+        return 1;
+    }
+
+    fprintf(fp, "This is a text file.\n");
+    fprintf(fp, "File handling in C.\n");
+
+    fclose(fp);   // always close after use
+
+    printf("Data written successfully!");
+    return 0;
+}
+```
+
+After running this, a file named `write.txt` is created in the same directory containing the two lines.
+
+---
+
+## 2. Reading from a File
+
+```c
+#include <stdio.h>
+
+int main() {
+    FILE *fp;
+    char line[100];
+
+    fp = fopen("write.txt", "r");   // open the file we just wrote
+    if (fp == NULL) {
+        printf("File not found!\n");
+        return 1;
+    }
+
+    printf("Contents of File:\n");
+
+    while (fgets(line, sizeof(line), fp)) {
+        printf("%s", line);
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+
+**Output:**
+```
+Contents of File:
+This is a text file.
+File handling in C.
+```
+
+---
+
+## 3. Appending to a File
+
+```c
+#include <stdio.h>
+
+int main() {
+    FILE *fp = fopen("write.txt", "a");
+    if (fp == NULL) {
+        printf("Error!\n");
+        return 1;
+    }
+
+    fprintf(fp, "Appended line.\n");
+    fclose(fp);
+
+    printf("Data appended successfully!");
+    return 0;
+}
+```
+
+---
+
+## 4. Character-by-Character Read
+
+```c
+#include <stdio.h>
+
+int main() {
+    FILE *fp = fopen("write.txt", "r");
+    if (fp == NULL) return 1;
+
+    char ch;
+    while ((ch = fgetc(fp)) != EOF) {
+        putchar(ch);   // print each character
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+
+`EOF` (End Of File) is a constant that signals no more data is available.
+
+---
+
+## Summary of Modes
+
+| Need | Mode |
+|---|---|
+| Only read an existing file | `"r"` |
+| Create/overwrite a file | `"w"` |
+| Add data to end of file | `"a"` |
+| Read and write existing file | `"r+"` |
+| Read and write (create/clear) | `"w+"` |

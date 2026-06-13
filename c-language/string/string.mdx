@@ -1,0 +1,107 @@
+---
+title: "String in C"
+description: "Declaring, initializing, and reading strings in C"
+---
+
+# String in C
+
+In C, a **string** is a sequence of characters stored in a **character array** and terminated by a **null character** `'\0'`. C has no built-in string type — strings are just `char` arrays.
+
+**Example:** `"Hello"` is stored as `{'H', 'e', 'l', 'l', 'o', '\0'}` — 6 bytes, not 5.
+
+Strings are used to store text-based information: student names, course titles, addresses, and so on.
+
+---
+
+## Declaration
+
+```c
+char string_name[size];
+
+char name[20];     // can hold up to 19 characters + '\0'
+```
+
+---
+
+## Initialization
+
+```c
+char name[20] = "kumar vishal";    // ✅ at declaration time
+```
+
+**You cannot assign a string after declaration using `=`:**
+
+```c
+char name[20];
+name = "kumar vishal";   // ❌ Error — cannot assign to array name
+```
+
+Use `strcpy()` instead:
+```c
+#include <string.h>
+strcpy(name, "kumar vishal");     // ✅ correct way
+```
+
+---
+
+## Example: Print a String
+
+```c
+#include <stdio.h>
+int main() {
+    char name[20] = "kumar vishal";
+    printf("%s", name);
+    return 0;
+}
+// Output: kumar vishal
+```
+
+---
+
+## Reading Strings from User Input
+
+### Using `scanf()` — reads until first space
+
+```c
+char name[20];
+scanf("%s", name);   // stops at whitespace — only reads one word
+```
+
+### Using `fgets()` — reads entire line including spaces ✅
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char name[20];
+    printf("Enter Name\n");
+    fgets(name, sizeof(name), stdin);
+    name[strcspn(name, "\n")] = '\0';  // remove trailing newline
+    printf("%s", name);
+    return 0;
+}
+```
+
+`fgets()` is the **recommended** way to read strings — it prevents buffer overflow and handles spaces correctly.
+
+---
+
+## How Strings are Stored in Memory
+
+For `char name[6] = "Hello"`:
+
+```
+Index:  [0]  [1]  [2]  [3]  [4]  [5]
+Value:   H    e    l    l    o   '\0'
+```
+
+The `'\0'` null terminator marks the end of the string. All standard string functions rely on it.
+
+---
+
+## Key Points
+
+- Always declare the array large enough for the string **plus** one byte for `'\0'`
+- `%s` in `printf` / `scanf` is the format specifier for strings
+- Use `fgets()` for safe input, especially when strings may contain spaces

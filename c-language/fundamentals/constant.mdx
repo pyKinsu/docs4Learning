@@ -1,0 +1,76 @@
+---
+title: "Constants"
+description: "Declaring and using constants in C with const and #define"
+---
+
+# Constants in C
+
+A **constant** is a fixed value that **cannot be changed** during the execution of a program. It is also called a **read-only** value. Constants must be initialized at the time of declaration; otherwise, they may hold garbage values.
+
+---
+
+## Ways to Define Constants
+
+### 1. Using the `const` keyword
+
+```c
+const data_type var_name = value;
+const float PI = 3.14;
+```
+
+### 2. Using `#define` (Preprocessor Macro)
+
+```c
+#define CONSTANT_NAME value
+#define PI 3.14
+```
+
+---
+
+## Examples
+
+**Using `const`:**
+```c
+#include <stdio.h>
+int main() {
+    const float PI = 3.14;
+    printf("Value of PI: %.2f\n", PI);
+    return 0;
+}
+```
+
+**Using `#define`:**
+```c
+#include <stdio.h>
+#define PI 3.14
+int main() {
+    printf("Value of PI: %.2f\n", PI);
+    return 0;
+}
+```
+
+Both produce the same output: `Value of PI: 3.14`
+
+---
+
+## Attempting to Change a Constant
+
+```c
+const int a = 10;
+a = 20;   // ❌ Error: assignment of read-only variable 'a'
+```
+
+---
+
+## `const` vs `#define`
+
+| Feature | `const` | `#define` |
+|---|---|---|
+| Handled by | Compiler | Preprocessor |
+| Memory allocated | Yes | No |
+| Type safety | Enforced | Not enforced |
+| Scope | Block / Function / Global | Global only (file scope) |
+| Error checking | At compile-time | None |
+| Debugging | Easier (has a name) | Harder (replaced before compile) |
+
+**Best practice:** Prefer `const` over `#define` for typed constants in modern C. Use `#define` for values that are truly compile-time substitutions (like include guards).

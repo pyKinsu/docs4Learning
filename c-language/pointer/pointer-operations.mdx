@@ -1,0 +1,122 @@
+---
+title: "Operations on Pointers"
+description: "Pointer assignment, dereferencing, arithmetic, and pointer-to-pointer"
+---
+
+# Operations on Pointers in C
+
+The main operations you can perform on pointers:
+
+1. **Pointer Assignment**
+2. **Dereferencing**
+3. **Pointer Arithmetic** (`p++`, `p--`, `p+n`, `p-n`)
+4. **Pointer to Pointer**
+
+---
+
+## a) Pointer Assignment
+
+Store the address of a variable in a pointer:
+
+```c
+int a = 10;
+int *ptr;
+ptr = &a;
+
+// &a   → address of a
+// ptr  → holds the address of a
+// *ptr → the value at that address (10)
+```
+
+Assign one pointer to another (both point to the same location):
+
+```c
+int a = 10;
+int *p1, *p2;
+
+p1 = &a;   // p1 holds address of a
+p2 = p1;   // p2 also holds address of a — both point to a
+```
+
+---
+
+## b) Dereferencing
+
+Access the value stored at the address a pointer holds using `*`:
+
+```c
+int x = 5;
+int *p = &x;
+
+printf("%d", *p);   // Output: 5
+
+*p = 99;            // change x through pointer
+printf("%d", x);    // Output: 99
+```
+
+---
+
+## c) Pointer Arithmetic
+
+Pointer arithmetic moves the pointer across memory positions based on the **data type size**.
+
+For `int *p` (assuming `int` = 4 bytes): `p++` moves 4 bytes forward.
+
+| Operation | Effect |
+|---|---|
+| `p++` | Move to the next element |
+| `p--` | Move to the previous element |
+| `p + n` | Move n elements forward |
+| `p - n` | Move n elements backward |
+
+**`p++` — next element:**
+```c
+int arr[3] = {10, 20, 30};
+int *p = arr;   // p → arr[0]
+
+p++;            // p → arr[1]
+printf("%d", *p);   // Output: 20
+```
+
+**`p--` — previous element:**
+```c
+int arr[3] = {10, 20, 30};
+int *p = &arr[2];   // p → arr[2] (30)
+
+p--;                // p → arr[1]
+printf("%d", *p);   // Output: 20
+```
+
+**`p + n` — move forward n elements:**
+```c
+int arr[4] = {5, 10, 15, 20};
+int *p = arr;
+
+p = p + 2;           // p → arr[2]
+printf("%d", *p);    // Output: 15
+```
+
+**`p - n` — move backward n elements:**
+```c
+int arr[4] = {5, 10, 15, 20};
+int *p = &arr[3];    // p → arr[3] (20)
+
+p = p - 2;           // p → arr[1]
+printf("%d", *p);    // Output: 10
+```
+
+---
+
+## d) Pointer to Pointer (Double Pointer)
+
+A pointer that stores the **address of another pointer**:
+
+```c
+int a = 10;
+int *p   = &a;    // p holds address of a
+int **pp = &p;    // pp holds address of p
+
+printf("%d", **pp);   // Output: 10  (double dereference)
+```
+
+Useful for dynamically allocated 2D arrays and functions that need to modify a pointer itself.

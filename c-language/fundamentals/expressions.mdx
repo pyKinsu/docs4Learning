@@ -1,0 +1,89 @@
+---
+title: "Expressions and Statements"
+description: "Understanding expressions and different types of statements in C"
+---
+
+# Expressions and Statements in C
+
+---
+
+## Expression
+
+A combination of **operands** and **operators** that produces a value is called an **expression**.
+
+```c
+c = a + b;
+```
+
+| Part | Role |
+|---|---|
+| `a` and `b` | Operands |
+| `+` | Arithmetic operator |
+| `=` | Assignment operator |
+| `a + b` | Expression (evaluates to a value) |
+
+More examples:
+```c
+x * y          // arithmetic expression
+x > y          // relational expression (true/false)
+x && y         // logical expression
+x = 5          // assignment expression — returns 5
+```
+
+---
+
+## Statement
+
+A **statement** is a complete instruction in C that performs an action. Most statements end with a semicolon (`;`).
+
+### Types of Statements
+
+**Declaration Statement** — creates a variable:
+```c
+int x;
+```
+
+**Assignment Statement** — assigns a value:
+```c
+x = 10;
+```
+
+**Expression Statement** — evaluates an expression:
+```c
+a + b;
+x++;
+```
+
+**Function Call Statement** — calls a function:
+```c
+printf("Hello");
+scanf("%d", &x);
+```
+
+**Control Flow Statement** — changes execution order:
+```c
+if (x > 0) { ... }
+while (x < 10) { ... }
+for (int i = 0; i < 5; i++) { ... }
+```
+
+**Compound Statement (Block)** — a group of statements enclosed in `{}`:
+```c
+{
+    int a = 5;
+    int b = 10;
+    int c = a + b;
+}
+```
+
+A block is treated as a single unit. Variables declared inside a block are local to that block.
+
+---
+
+## Key Difference
+
+| | Expression | Statement |
+|---|---|---|
+| Definition | Produces a value | Performs an action |
+| Example | `a + b`, `x > 5` | `int a = 5;`, `printf(...)` |
+| Ends with | Nothing required | Semicolon `;` |

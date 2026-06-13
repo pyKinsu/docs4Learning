@@ -1,0 +1,118 @@
+---
+title: "Using #ifdef"
+description: "Conditional compilation with #ifdef, #ifndef, #if, #else, and #endif"
+---
+
+# Conditional Compilation — `#ifdef`
+
+Conditional compilation directives let you **include or exclude parts of the code** before compilation, based on whether a macro is defined or a condition is true. This is useful for platform-specific code, debug builds, and feature flags.
+
+---
+
+## `#ifdef` — If Defined
+
+Compiles the block only if the macro **has been defined**:
+
+```c
+#define DEBUG
+
+#ifdef DEBUG
+    printf("Debug mode ON\n");
+#endif
+```
+
+If `DEBUG` is defined, the `printf` is compiled. If not, it's completely removed.
+
+---
+
+## `#ifndef` — If Not Defined
+
+Compiles the block only if the macro **has NOT been defined** (most commonly used as include guards):
+
+```c
+#ifndef MY_HEADER_H
+#define MY_HEADER_H
+
+// header content here
+
+#endif
+```
+
+---
+
+## `#if`, `#elif`, `#else`, `#endif`
+
+More powerful: evaluate a constant expression, not just whether a macro exists.
+
+```c
+#define VERSION 2
+
+#if VERSION == 1
+    printf("Running version 1\n");
+#elif VERSION == 2
+    printf("Running version 2\n");
+#else
+    printf("Unknown version\n");
+#endif
+```
+
+---
+
+## Complete Example: Debug vs Release Build
+
+```c
+#include <stdio.h>
+
+// Comment out the next line to build in release mode
+#define DEBUG_MODE
+
+int main() {
+    int x = 42;
+
+#ifdef DEBUG_MODE
+    printf("[DEBUG] x = %d\n", x);
+#endif
+
+    printf("Program running.\n");
+    return 0;
+}
+```
+
+**With `DEBUG_MODE` defined:**
+```
+[DEBUG] x = 42
+Program running.
+```
+
+**Without `DEBUG_MODE`:**
+```
+Program running.
+```
+
+---
+
+## Platform-Specific Code
+
+```c
+#ifdef _WIN32
+    printf("Running on Windows\n");
+#elif defined(__linux__)
+    printf("Running on Linux\n");
+#elif defined(__APPLE__)
+    printf("Running on macOS\n");
+#endif
+```
+
+---
+
+## Summary of Conditional Directives
+
+| Directive | Meaning |
+|---|---|
+| `#ifdef NAME` | Compile if `NAME` is defined |
+| `#ifndef NAME` | Compile if `NAME` is NOT defined |
+| `#if expr` | Compile if expression is non-zero |
+| `#elif expr` | Else-if branch |
+| `#else` | Else branch |
+| `#endif` | End of conditional block |
+| `#undef NAME` | Undefine a macro |

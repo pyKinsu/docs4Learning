@@ -1,0 +1,117 @@
+---
+title: "Pointers and Arrays"
+description: "Accessing array elements with pointers and array of pointers"
+---
+
+# Pointers and Arrays in C
+
+In C, the **name of an array is a pointer** to its first element. This tight relationship means you can traverse and manipulate arrays entirely through pointer arithmetic.
+
+```c
+int arr[5] = {10, 20, 30, 40, 50};
+int *ptr = arr;   // same as: int *ptr = &arr[0];
+```
+
+---
+
+## Accessing Array Elements via Pointer
+
+```c
+#include <stdio.h>
+
+int main() {
+    int num[5] = {10, 20, 30, 40, 50};
+    int *ptr = num;
+
+    for (int i = 0; i < 5; i++) {
+        printf("num[%d] = %d\t Address = %p\n", i, *(ptr + i), (ptr + i));
+    }
+    return 0;
+}
+```
+
+`*(ptr + i)` and `num[i]` are completely equivalent — the compiler translates `num[i]` to `*(num + i)` internally.
+
+---
+
+## Array of Pointers
+
+An array where each element is a pointer:
+
+```c
+data_type *array_name[size];
+
+int *ptr[3];    // array of 3 integer pointers
+```
+
+### Example 1: Array of Integer Pointers
+
+```c
+#include <stdio.h>
+
+int main() {
+    int a = 10, b = 20, c = 30;
+    int *ptr[3];
+
+    ptr[0] = &a;
+    ptr[1] = &b;
+    ptr[2] = &c;
+
+    for (int i = 0; i < 3; i++) {
+        printf("Value of ptr[%d]: %d\n", i, *ptr[i]);
+    }
+    return 0;
+}
+```
+
+**Output:**
+```
+Value of ptr[0]: 10
+Value of ptr[1]: 20
+Value of ptr[2]: 30
+```
+
+### Example 2: Array of String Pointers
+
+Useful for storing a list of strings without a 2D character array:
+
+```c
+#include <stdio.h>
+
+int main() {
+    char *names[] = {"Rahul", "Parvej", "Aman"};
+
+    for (int i = 0; i < 3; i++) {
+        printf("Name[%d]: %s\n", i, names[i]);
+    }
+    return 0;
+}
+```
+
+**Output:**
+```
+Name[0]: Rahul
+Name[1]: Parvej
+Name[2]: Aman
+```
+
+---
+
+## `arr[i]` vs `*(arr + i)`
+
+These two are identical in C:
+
+```c
+int arr[] = {5, 10, 15};
+
+arr[2]       // 15
+*(arr + 2)   // 15  — pointer arithmetic equivalent
+```
+
+---
+
+## Key Points
+
+- `arr` (array name) decays to `&arr[0]` when used in an expression
+- `sizeof(arr)` gives the total array size; `sizeof(ptr)` gives only the pointer size
+- You can increment a pointer (`ptr++`) but **not** an array name (`arr++` is illegal)

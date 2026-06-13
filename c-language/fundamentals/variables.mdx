@@ -1,0 +1,99 @@
+---
+title: "Variables"
+description: "Declaring, initializing, and classifying variables in C"
+---
+
+# Variables in C
+
+A **variable** is a named container that occupies a memory location to store a value. That value can be read and changed during program execution.
+
+---
+
+## Declaration and Initialization
+
+**Declaration** — reserves memory for the variable:
+```c
+int number;
+```
+
+**Initialization** — declaration + assigning a value:
+```c
+int number = 10;
+```
+
+**Syntax:**
+```
+data_type variable_name;
+data_type variable_name = value;
+```
+
+---
+
+## Naming Conventions
+
+| Style | Example | Used In |
+|---|---|---|
+| **Pascal Case** | `UserName` | Types, structs |
+| **Camel Case** | `userName` | Variables, functions |
+| **Snake Case** | `user_name` | C variables, Python |
+| **Kebab Case** | `user-name` | Not valid in C |
+
+---
+
+## Variable Classification by Data Type
+
+| Data Type | Keyword | Size | Range |
+|---|---|---|---|
+| Character | `char` | 1 byte | −128 to 127 |
+| Integer | `int` | 2 or 4 bytes | −32,768 to 32,767 / ±2 billion |
+| Short Integer | `short` | 2 bytes | −32,768 to 32,767 |
+| Long Integer | `long` | 4 or 8 bytes | Platform-dependent |
+| Float | `float` | 4 bytes | ±3.4 × 10³⁸ |
+| Double | `double` | 8 bytes | ±1.7 × 10³⁰⁸ |
+| Long Double | `long double` | 10–16 bytes | Even higher precision |
+
+---
+
+## Variable Classification by Scope
+
+| Type | Declared In | Scope | Lifetime |
+|---|---|---|---|
+| **Local** | Inside a function or block | Only within that block | Until block ends |
+| **Global** | Outside all functions | Entire file | Entire program run |
+| **Static** | With `static` keyword | Limited scope, retains value | Until program ends |
+| **Extern** | In another file | Used globally | Depends on origin |
+| **Register** | With `register` keyword | CPU register (if available) | Until block ends |
+
+---
+
+## Format Specifiers
+
+Used with `printf()` and `scanf()` to read/print specific types:
+
+| Specifier | Data Type | Example | Output |
+|---|---|---|---|
+| `%d` | `int` | `printf("%d", 25);` | `25` |
+| `%f` | `float` | `printf("%.2f", 5.6789);` | `5.68` |
+| `%lf` | `double` | `printf("%.2lf", 3.14);` | `3.14` |
+| `%c` | `char` | `printf("%c", 'A');` | `A` |
+| `%s` | string | `printf("%s", "Hello");` | `Hello` |
+
+---
+
+## Example
+
+```c
+#include <stdio.h>
+
+int main() {
+    int age = 20;
+    float cgpa = 8.75;
+    char grade = 'A';
+
+    printf("Age  : %d\n", age);
+    printf("CGPA : %.2f\n", cgpa);
+    printf("Grade: %c\n", grade);
+
+    return 0;
+}
+```

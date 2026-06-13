@@ -1,0 +1,124 @@
+---
+title: "Pointers and Structures"
+description: "Using pointers with structures and the arrow operator"
+---
+
+# Pointer with Structure in C
+
+A **pointer to a structure** stores the address of a structure variable. It allows you to access and modify structure members through the pointer using the **arrow operator** (`->`).
+
+---
+
+## Syntax
+
+```c
+struct StructureName *pointer_name;
+```
+
+---
+
+## Arrow Operator (`->`)
+
+When accessing members through a pointer, use `->` instead of `.`:
+
+```c
+ptr->member    // equivalent to: (*ptr).member
+```
+
+---
+
+## Example: Pointer to Structure
+
+```c
+#include <stdio.h>
+
+struct Student {
+    int roll;
+    float marks;
+};
+
+int main() {
+    struct Student s1 = {101, 89.5};
+    struct Student *ptr;
+
+    ptr = &s1;   // ptr holds the address of s1
+
+    printf("Roll  = %d\n",   ptr->roll);
+    printf("Marks = %.2f\n", ptr->marks);
+
+    return 0;
+}
+```
+
+**Output:**
+```
+Roll  = 101
+Marks = 89.50
+```
+
+---
+
+## Modifying Members via Pointer
+
+```c
+#include <stdio.h>
+
+struct Student {
+    int roll;
+    float marks;
+};
+
+int main() {
+    struct Student s1 = {101, 88.5};
+    struct Student *ptr = &s1;
+
+    ptr->marks = 95.0f;   // modify through pointer
+
+    printf("Roll  = %d\n",   ptr->roll);
+    printf("Marks = %.2f\n", ptr->marks);
+
+    return 0;
+}
+// Output: Roll = 101  Marks = 95.00
+```
+
+---
+
+## Dot (`.`) vs Arrow (`->`)
+
+| Situation | Operator | Example |
+|---|---|---|
+| Direct structure variable | `.` | `s1.roll` |
+| Pointer to structure | `->` | `ptr->roll` |
+
+Both are equivalent:
+```c
+ptr->roll     // using arrow
+(*ptr).roll   // using dot after dereferencing — same thing
+```
+
+---
+
+## Passing Structure Pointer to a Function
+
+```c
+#include <stdio.h>
+
+struct Student {
+    int roll;
+    float marks;
+};
+
+void display(struct Student *s) {
+    printf("Roll : %d\n",   s->roll);
+    printf("Marks: %.2f\n", s->marks);
+}
+
+int main() {
+    struct Student s1 = {102, 91.5};
+    display(&s1);
+    return 0;
+}
+```
+
+This is the preferred way to pass structures — no copying, direct modification possible.

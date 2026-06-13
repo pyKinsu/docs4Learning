@@ -27,63 +27,85 @@
         "tab": "C Language",
         "groups": [
           {
-            "group": "Overview",
+            "group": "Fundamentals",
             "pages": [
-              "c-language/introduction"
-            ]
-          },
-          {
-            "group": "Getting Started",
-            "pages": [
-              "c-language/getting-started/overview",
-              "c-language/getting-started/setup",
-              "c-language/getting-started/first-program"
-            ]
-          },
-          {
-            "group": "Basics",
-            "pages": [
-              "c-language/basics/variables",
-              "c-language/basics/data-types",
-              "c-language/basics/operators",
-              "c-language/basics/input-output"
-            ]
-          },
-          {
-            "group": "Control Flow",
-            "pages": [
-              "c-language/control-flow/conditionals",
-              "c-language/control-flow/loops",
-              "c-language/control-flow/switch"
+              "c-language/fundamentals/introduction",
+              "c-language/fundamentals/identifier",
+              "c-language/fundamentals/keywords",
+              "c-language/fundamentals/datatypes",
+              "c-language/fundamentals/constant",
+              "c-language/fundamentals/variables",
+              "c-language/fundamentals/expressions",
+              "c-language/fundamentals/operators",
+              "c-language/fundamentals/control-structure",
+              "c-language/fundamentals/chapter1"
             ]
           },
           {
             "group": "Functions",
             "pages": [
-              "c-language/functions/defining-functions",
-              "c-language/functions/recursion",
-              "c-language/functions/scope"
+              "c-language/functions/user-defined",
+              "c-language/functions/predefined",
+              "c-language/functions/recursive"
             ]
           },
           {
-            "group": "Arrays & Strings",
+            "group": "Array",
             "pages": [
-              "c-language/arrays-strings/arrays",
-              "c-language/arrays-strings/strings"
+              "c-language/array/array",
+              "c-language/array/array-types",
+              "c-language/array/array-in-functions"
             ]
           },
           {
-            "group": "Pointers",
+            "group": "String",
             "pages": [
-              "c-language/pointers/introduction",
-              "c-language/pointers/pointer-arithmetic"
+              "c-language/string/string",
+              "c-language/string/string-functions"
             ]
           },
           {
-            "group": "Memory Management",
+            "group": "Structure",
             "pages": [
-              "c-language/memory/stack-heap",
-              "c-language/memory/dynamic-memory"
+              "c-language/structure/structure",
+              "c-language/structure/structure-functions",
+              "c-language/structure/self-referential"
+            ]
+          },
+          {
+            "group": "Union",
+            "pages": [
+              "c-language/union/union",
+              "c-language/union/union-vs-structure"
+            ]
+          },
+          {
+            "group": "Pointer",
+            "pages": [
+              "c-language/pointer/pointer",
+              "c-language/pointer/pointer-functions",
+              "c-language/pointer/pointer-operations",
+              "c-language/pointer/pointer-arrays",
+              "c-language/pointer/pointer-structures"
+            ]
+          },
+          {
+            "group": "File Handling",
+            "pages": [
+              "c-language/file-handling/file-handling",
+              "c-language/file-handling/file-operations",
+              "c-language/file-handling/sequential-random"
+            ]
+          },
+          {
+            "group": "Preprocessor",
+            "pages": [
+              "c-language/preprocessor/define",
+              "c-language/preprocessor/functional-macros",
+              "c-language/preprocessor/include",
+              "c-language/preprocessor/ifdef",
+              "c-language/preprocessor/other-commands",
+              "c-language/preprocessor/macros-vs-functions"
             ]
           }
         ]

@@ -1,0 +1,141 @@
+---
+title: "String Manipulation Functions"
+description: "Built-in string functions from string.h in C"
+---
+
+# String Manipulation Functions in C
+
+C provides built-in library functions to work with strings — declared in **`<string.h>`**. These let you copy, concatenate, compare, measure, and reverse strings without writing the logic yourself.
+
+```c
+#include <string.h>
+```
+
+---
+
+## 1. `strlen()` — Get the Length
+
+Returns the number of characters in a string, **excluding** the null terminator `'\0'`.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char name[20] = "Vishal";
+    int len = strlen(name);
+    printf("Length = %d", len);   // Output: 6
+    return 0;
+}
+```
+
+---
+
+## 2. `strcpy()` — Copy a String
+
+Copies the content of one string into another. The destination must be large enough.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[20] = "Hello";
+    char str2[20];
+    strcpy(str2, str1);
+    printf("Copied: %s", str2);   // Output: Hello
+    return 0;
+}
+```
+
+---
+
+## 3. `strcat()` — Concatenate Strings
+
+Appends one string to the end of another. The destination must have enough space.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[30] = "Hello ";
+    char str2[10] = "World!";
+    strcat(str1, str2);
+    printf("%s", str1);   // Output: Hello World!
+    return 0;
+}
+```
+
+---
+
+## 4. `strcmp()` — Compare Strings
+
+Compares two strings character by character:
+- Returns `0` if both strings are **equal**
+- Returns `> 0` if the first string is **greater**
+- Returns `< 0` if the second string is **greater**
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[20] = "abc";
+    char str2[20] = "abd";
+    int result = strcmp(str1, str2);
+    if (result == 0)
+        printf("Strings are equal");
+    else
+        printf("Strings are not equal");
+    return 0;
+}
+// Output: Strings are not equal
+```
+
+---
+
+## 5. `strrev()` — Reverse a String
+
+Reverses the string in place. Available in Turbo C / MinGW compilers — **not in all compilers** (not part of the C standard).
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[20] = "Future";
+    printf("Reversed: %s", strrev(str));
+    return 0;
+}
+// Output: Reversed: erutuF
+```
+
+**For portability**, write your own reverse:
+```c
+#include <stdio.h>
+#include <string.h>
+
+void reverseStr(char str[]) {
+    int n = strlen(str);
+    for (int i = 0; i < n / 2; i++) {
+        char temp = str[i];
+        str[i] = str[n - 1 - i];
+        str[n - 1 - i] = temp;
+    }
+}
+```
+
+---
+
+## Quick Reference
+
+| Function | Header | Description |
+|---|---|---|
+| `strlen(s)` | `string.h` | Length of string (excludes `'\0'`) |
+| `strcpy(d, s)` | `string.h` | Copy `s` into `d` |
+| `strcat(d, s)` | `string.h` | Append `s` to end of `d` |
+| `strcmp(s1, s2)` | `string.h` | Compare two strings |
+| `strrev(s)` | `string.h` | Reverse string (compiler-specific) |
+| `strupr(s)` | `string.h` | Convert to uppercase (Turbo C) |
+| `strlwr(s)` | `string.h` | Convert to lowercase (Turbo C) |

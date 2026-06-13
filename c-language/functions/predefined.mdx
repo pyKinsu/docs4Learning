@@ -1,0 +1,132 @@
+---
+title: "Predefined Functions"
+description: "Built-in library functions in C and their header files"
+---
+
+# Predefined Functions in C
+
+**Predefined functions** (also called library functions or built-in functions) are functions that are already written, compiled, and provided by C's standard libraries. You use them by including the appropriate **header file** with `#include`.
+
+---
+
+## Syntax
+
+```c
+#include <headerFile.h>
+
+int main() {
+    functionName(parameters);
+    return 0;
+}
+```
+
+---
+
+## Common Library Categories
+
+### 1. Input / Output — `<stdio.h>`
+
+| Function | Description |
+|---|---|
+| `printf()` | Prints formatted output to screen |
+| `scanf()` | Reads formatted input from user |
+| `getchar()` | Reads a single character |
+| `putchar()` | Prints a single character |
+| `fgets()` | Reads a string (safe, handles spaces) |
+
+```c
+#include <stdio.h>
+int main() {
+    printf("Hello, World!");
+    return 0;
+}
+```
+
+---
+
+### 2. String Handling — `<string.h>`
+
+| Function | Description |
+|---|---|
+| `strlen(s)` | Returns length of string (excluding `\0`) |
+| `strcpy(d, s)` | Copies string `s` into `d` |
+| `strcat(d, s)` | Appends `s` to end of `d` |
+| `strcmp(s1, s2)` | Compares two strings (returns 0 if equal) |
+| `strrev(s)` | Reverses a string (Turbo C) |
+
+---
+
+### 3. Math Functions — `<math.h>`
+
+| Function | Description |
+|---|---|
+| `sqrt(x)` | Square root of x |
+| `pow(x, y)` | x raised to power y |
+| `abs(x)` | Absolute value of integer x |
+| `fabs(x)` | Absolute value of float x |
+| `ceil(x)` | Rounds up to nearest integer |
+| `floor(x)` | Rounds down to nearest integer |
+
+```c
+#include <stdio.h>
+#include <math.h>
+int main() {
+    printf("sqrt(25) = %.0f\n", sqrt(25));   // 5
+    printf("pow(2,10)= %.0f\n", pow(2, 10)); // 1024
+    printf("abs(-7)  = %d\n",   abs(-7));    // 7
+    return 0;
+}
+```
+
+---
+
+### 4. Standard Library — `<stdlib.h>`
+
+| Function | Description |
+|---|---|
+| `malloc(size)` | Allocates memory at runtime |
+| `calloc(n, size)` | Allocates and zero-initializes memory |
+| `realloc(ptr, size)` | Resizes allocated memory |
+| `free(ptr)` | Frees allocated memory |
+| `rand()` | Generates a pseudo-random number |
+| `exit(code)` | Terminates the program immediately |
+| `atoi(s)` | Converts string to integer |
+
+---
+
+### 5. Character Handling — `<ctype.h>`
+
+| Function | Description |
+|---|---|
+| `isalpha(c)` | Is the character a letter? |
+| `isdigit(c)` | Is the character a digit? |
+| `isupper(c)` | Is it uppercase? |
+| `islower(c)` | Is it lowercase? |
+| `toupper(c)` | Convert to uppercase |
+| `tolower(c)` | Convert to lowercase |
+
+---
+
+### 6. Time Functions — `<time.h>`
+
+| Function | Description |
+|---|---|
+| `time(NULL)` | Returns current time as seconds since epoch |
+| `clock()` | Returns processor time used by the program |
+
+---
+
+## Example: Using Multiple Libraries
+
+```c
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
+int main() {
+    char name[] = "Vishal";
+    printf("Name length: %d\n", strlen(name));   // 6
+    printf("sqrt(49)  : %.0f\n", sqrt(49));      // 7
+    return 0;
+}
+```

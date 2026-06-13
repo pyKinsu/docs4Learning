@@ -1,0 +1,112 @@
+---
+title: "Pointers in C"
+description: "Introduction to pointers — declaration, initialization, and usage"
+---
+
+# Pointers in C
+
+A **pointer** is a variable that stores the **memory address** of another variable instead of storing a value directly.
+
+Two key operators used with pointers:
+- `&` **(Address-of operator)** — gets the memory address of a variable
+- `*` **(Dereference operator)** — accesses the value stored at the address
+
+---
+
+## Declaration
+
+```c
+data_type *pointer_name;
+
+int *ptr;      // pointer to an int
+float *fptr;   // pointer to a float
+char *cptr;    // pointer to a char
+```
+
+The pointer type **must match** the type of the variable it will point to.
+
+---
+
+## Initialization
+
+```c
+int a = 20;
+int *ptr = &a;    // ptr now holds the address of a
+```
+
+Or separately:
+```c
+int a = 20;
+int *ptr;
+ptr = &a;
+```
+
+---
+
+## Dereferencing
+
+```c
+printf("%d", *ptr);   // prints the value at the address ptr holds → 20
+*ptr = 50;            // changes the value of 'a' through the pointer
+```
+
+---
+
+## Complete Example
+
+```c
+#include <stdio.h>
+
+int main() {
+    int a = 20;
+    int *ptr = &a;
+
+    printf("Value of a          : %d\n", a);
+    printf("Address of a        : %p\n", &a);
+    printf("Value stored in ptr : %p\n", ptr);   // same address as &a
+    printf("Value via *ptr      : %d\n", *ptr);  // 20
+
+    *ptr = 99;   // change a through the pointer
+    printf("a after *ptr = 99   : %d\n", a);     // 99
+
+    return 0;
+}
+```
+
+---
+
+## Uses of Pointers
+
+- **Modify function arguments** — pass by reference
+- **Array traversal** — pointer arithmetic is fast
+- **Dynamic memory allocation** — `malloc()`, `calloc()`, `free()`
+- **Building data structures** — linked lists, trees, graphs
+- **Returning multiple values** from a function
+
+---
+
+## NULL Pointer
+
+A pointer that does not point to any valid memory location. Always initialize pointers to `NULL` if no address is available yet:
+
+```c
+int *ptr = NULL;
+
+if (ptr == NULL) {
+    printf("Pointer is not initialized");
+}
+```
+
+Dereferencing a NULL pointer causes a **segmentation fault**.
+
+---
+
+## Summary
+
+| Expression | Meaning |
+|---|---|
+| `int *ptr` | Declare a pointer to int |
+| `ptr = &a` | Store address of `a` in `ptr` |
+| `*ptr` | Value at the address `ptr` holds |
+| `ptr` | The address itself |
+| `&a` | Address of variable `a` |

@@ -1,0 +1,102 @@
+---
+title: "User-Defined Functions"
+description: "Creating and using your own functions in C"
+---
+
+# User-Defined Functions in C
+
+A **function** is a block of code that performs a specific task and can be reused whenever needed. Functions help break a large program into smaller, manageable parts and eliminate code repetition.
+
+**Types of functions in C:**
+1. **Predefined Functions** — Built-in, e.g. `printf()`, `scanf()`, `sqrt()`
+2. **User-Defined Functions** — Created by the programmer
+
+---
+
+## Structure of a Function
+
+### 1. Function Declaration (Prototype / Signature)
+
+Tells the compiler the function's name, return type, and parameter types — without a body. Placed before `main()`.
+
+```c
+returnType functionName(parameter list);
+
+// Example:
+int add(int a, int b);
+```
+
+### 2. Function Definition
+
+The actual function body — what the function does.
+
+```c
+returnType functionName(parameter list) {
+    // function body
+}
+
+// Example:
+int add(int a, int b) {
+    return a + b;
+}
+```
+
+### 3. Function Call
+
+Executes the function from somewhere in the program.
+
+```c
+int result = add(5, 3);
+```
+
+---
+
+## Complete Example
+
+```c
+#include <stdio.h>
+
+// Declaration
+int add(int a, int b);
+
+int main() {
+    int result = add(10, 20);
+    printf("Sum = %d", result);
+    return 0;
+}
+
+// Definition
+int add(int a, int b) {
+    return a + b;
+}
+// Output: Sum = 30
+```
+
+---
+
+## Types of Function Based on Arguments and Return
+
+| Type | Arguments | Return Value | Example |
+|---|---|---|---|
+| No argument, no return | None | None | `void greet()` |
+| No argument, with return | None | Yes | `int getYear()` |
+| With argument, no return | Yes | None | `void display(int x)` |
+| With argument, with return | Yes | Yes | `int add(int a, int b)` |
+
+---
+
+## Why Use Functions?
+
+- **Reusability** — Write once, use anywhere in the program
+- **Modularity** — Break complex programs into smaller pieces
+- **Readability** — Code becomes easier to understand
+- **Easy debugging** — Isolate and fix bugs in specific functions
+- **Avoid repetition** — No need to rewrite the same logic
+
+---
+
+## Key Rules
+
+- Arguments in C are passed **by value** by default (changes inside the function don't affect the original unless pointers are used)
+- A function without a `return` statement that has a non-void return type will return a **garbage value**
+- Function prototypes allow defining the function **after** `main()`

@@ -1,0 +1,91 @@
+---
+title: "#define Statement"
+description: "Using #define to create macros and symbolic constants in C"
+---
+
+# `#define` Statement in C
+
+The `#define` directive is a **preprocessor command** that tells the C preprocessor to replace a name with a value (or code) everywhere it appears in the program — **before** compilation begins.
+
+It is the most basic form of a macro in C.
+
+---
+
+## Syntax
+
+```c
+#define MACRO_NAME replacement_text
+```
+
+- `MACRO_NAME` — by convention written in **UPPERCASE**
+- `replacement_text` — the value or code that replaces the name
+- No semicolon (`;`) at the end
+
+---
+
+## Symbolic Constants
+
+The most common use: replacing magic numbers with readable names.
+
+```c
+#include <stdio.h>
+#define PI       3.14159
+#define MAX_SIZE 100
+#define GREETING "Hello, World!"
+
+int main() {
+    float r = 5.0;
+    float area = PI * r * r;
+
+    printf("Area = %.2f\n", area);
+    printf("%s\n", GREETING);
+
+    return 0;
+}
+```
+
+**Output:**
+```
+Area = 78.54
+Hello, World!
+```
+
+The preprocessor replaces every occurrence of `PI` with `3.14159` before the compiler sees the code.
+
+---
+
+## Object-like Macros
+
+```c
+#define TRUE  1
+#define FALSE 0
+#define NULL  0
+#define NEWLINE '\n'
+```
+
+---
+
+## Undefining a Macro
+
+You can remove a macro definition mid-file using `#undef`:
+
+```c
+#define LIMIT 50
+// ... use LIMIT ...
+#undef LIMIT
+// LIMIT no longer exists below this line
+```
+
+---
+
+## `#define` vs `const`
+
+| | `#define` | `const` |
+|---|---|---|
+| Handled by | Preprocessor (text substitution) | Compiler |
+| Type checking | None | Yes |
+| Memory | No storage allocated | Memory allocated |
+| Scope | File-wide (no block scope) | Follows normal scope rules |
+| Debugging | Harder (no name in binary) | Easier |
+
+**Prefer `const` for typed constants. Use `#define` for compile-time substitutions like include guards.**

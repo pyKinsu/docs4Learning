@@ -1,0 +1,91 @@
+---
+title: "Unions in C"
+description: "User-defined data type that shares memory among all its members"
+---
+
+# Union in C
+
+A **union** is a user-defined data type similar to a structure, but with one critical difference: **all members share the same memory location**. The size of a union equals the size of its **largest member**.
+
+Only one member can hold a valid value at any given time — writing to one member overwrites the others.
+
+---
+
+## Syntax
+
+```c
+union UnionName {
+    data_type member1;
+    data_type member2;
+    ...
+};
+```
+
+---
+
+## Example
+
+```c
+union Data {
+    int   i;       // 4 bytes
+    float f;       // 4 bytes
+    char  str[20]; // 20 bytes  ← largest
+};
+// sizeof(union Data) = 20 bytes
+```
+
+All three members (`i`, `f`, `str`) share the **same 20 bytes** of memory.
+
+---
+
+## Complete Program
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+union Student {
+    int   roll;
+    char  name[20];
+    float marks;
+};
+
+int main() {
+    union Student s1;
+
+    strcpy(s1.name, "kumar");
+    printf("Name : %s\n", s1.name);
+
+    s1.marks = 12.5f;          // overwrites the shared memory
+    printf("Marks: %.2f\n", s1.marks);
+
+    return 0;
+}
+```
+
+**Output:**
+```
+Name : kumar
+Marks: 12.50
+```
+
+<Warning>
+After setting `s1.marks`, the value in `s1.name` is no longer reliable because they share the same memory.
+</Warning>
+
+---
+
+## Declaring and Accessing a Union Variable
+
+```c
+union Student s1;       // declare union variable
+s1.roll = 101;          // access with dot operator (same as struct)
+```
+
+---
+
+## When to Use Unions
+
+- When you need to store **different types of data at different times** in the same variable
+- Memory-constrained environments (e.g. embedded systems) where saving bytes matters
+- Implementing type-variant data (like a `JSON` value that can be string, number, or bool)
