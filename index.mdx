@@ -1,50 +1,69 @@
 ---
-title: "Welcome to pyKinsu Docs"
-description: "A clean, scalable documentation hub for programming languages, tools, and examples."
+title: "AcadLink Learn"
+seoTitle: "AcadLink Learn — Programming Documentation"
+description: "Free programming documentation for college students. C Language guides, examples, and practice programs — built for AcadLink."
 ---
 
 <img
   className="block dark:hidden"
-  src="/images/hero-light.png"
-  alt="Hero Light"
+  src="/logo/light.svg"
+  alt="AcadLink"
+  style={{ height: "48px", marginBottom: "24px" }}
 />
 <img
   className="hidden dark:block"
-  src="/images/hero-dark.png"
-  alt="Hero Dark"
+  src="/logo/dark.svg"
+  alt="AcadLink"
+  style={{ height: "48px", marginBottom: "24px" }}
 />
 
-## What's inside
-
-Structured, beginner-friendly reference documentation built for developers who want to learn by reading and doing.
+## Start Learning
 
 <CardGroup cols={2}>
   <Card
     title="C Language"
     icon="c"
-    href="/c-language/introduction"
+    href="/c-language/fundamentals/introduction"
   >
-    Learn C from the ground up — variables, pointers, memory management, and more.
+    From variables and data types all the way to pointers, file handling, and preprocessor macros.
   </Card>
   <Card
-    title="Examples"
+    title="Practice Programs"
     icon="code"
-    href="/examples/index"
+    href="/c-language/fundamentals/chapter1"
   >
-    Practical, runnable code examples with problem statements and expected output.
+    Chapter-wise C programs with complete solutions — great for exam prep.
   </Card>
 </CardGroup>
 
-## Coming soon
+## C Language Topics
 
 <CardGroup cols={3}>
-  <Card title="Python" icon="python" >
-    Coming soon
+  <Card title="Fundamentals" icon="book-open" href="/c-language/fundamentals/introduction">
+    Identifiers, keywords, data types, variables, operators, and control structures.
   </Card>
-  <Card title="JavaScript" icon="js" >
-    Coming soon
+  <Card title="Functions" icon="function" href="/c-language/functions/user-defined">
+    User-defined, predefined, and recursive functions.
   </Card>
-  <Card title="HTML & CSS" icon="html5" >
-    Coming soon
+  <Card title="Arrays" icon="table" href="/c-language/array/array">
+    1D, 2D, multi-dimensional arrays and passing arrays to functions.
+  </Card>
+  <Card title="Strings" icon="text-size" href="/c-language/string/string">
+    String declaration, input, and manipulation functions from `string.h`.
+  </Card>
+  <Card title="Structures & Unions" icon="layer-group" href="/c-language/structure/structure">
+    Structs, unions, enums, and self-referential structures.
+  </Card>
+  <Card title="Pointers" icon="arrow-pointer" href="/c-language/pointer/pointer">
+    Pointer basics, arithmetic, pointer arrays, and pointer-to-struct.
+  </Card>
+  <Card title="File Handling" icon="file-code" href="/c-language/file-handling/file-handling">
+    Reading, writing, appending, and random access file operations.
+  </Card>
+  <Card title="Preprocessor" icon="terminal" href="/c-language/preprocessor/define">
+    `#define`, functional macros, `#include`, `#ifdef`, and more.
+  </Card>
+  <Card title="Examples" icon="flask-conical" href="/examples/index">
+    Fully-worked examples — Fibonacci, factorial, linked list, and more.
   </Card>
 </CardGroup>

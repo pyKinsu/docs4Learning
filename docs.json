@@ -1,13 +1,21 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "pyKinsu Docs",
+  "name": "AcadLink Learn",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
+  "metadata": {
+    "og:title": "AcadLink Learn",
+    "og:description": "Free programming documentation for college students — built for AcadLink.",
+    "og:site_name": "AcadLink Learn",
+    "twitter:title": "AcadLink Learn",
+    "twitter:description": "Free programming documentation for college students — built for AcadLink.",
+    "twitter:card": "summary_large_image"
+  },
   "navigation": {
     "tabs": [
       {
@@ -135,14 +143,14 @@
     "global": {
       "anchors": [
         {
+          "anchor": "AcadLink",
+          "href": "https://acadlink.app",
+          "icon": "graduation-cap"
+        },
+        {
           "anchor": "GitHub",
           "href": "https://github.com/pyKinsu/docs4Learning",
           "icon": "github"
-        },
-        {
-          "anchor": "Mintlify Docs",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
         }
       ]
     }
@@ -154,20 +162,20 @@
   "navbar": {
     "links": [
       {
-        "label": "GitHub",
-        "href": "https://github.com/pyKinsu"
+        "label": "AcadLink",
+        "href": "https://acadlink.app"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Open AcadLink",
+      "href": "https://acadlink.app"
     }
   },
   "footer": {
     "socials": {
       "x": "https://x.com/pykinsu",
-      "github": "https://github.com/pyKinsu"
+      "github": "https://github.com/pykinsu"
     }
   }
 }
