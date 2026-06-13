@@ -22,7 +22,7 @@
         "tab": "Home",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Menu",
             "pages": [
               "index",
               "quickstart",
