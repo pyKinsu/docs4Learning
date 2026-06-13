@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "venus",
+  "theme": "luma",
   "name": "AcadLink Learn",
   "colors": {
     "primary": "#4353d4",
