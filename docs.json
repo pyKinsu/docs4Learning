@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "luma",
+  "theme": "mint",
   "name": "AcadLink Learn",
   "colors": {
-    "primary": "#4353d4",
-    "light": "#6470e8",
-    "dark": "#2e3eb8"
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
   "metadata": {
