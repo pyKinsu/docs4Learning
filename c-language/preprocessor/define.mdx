@@ -82,10 +82,10 @@ You can remove a macro definition mid-file using `#undef`:
 
 | | `#define` | `const` |
 |---|---|---|
-| Handled by | Preprocessor (text substitution) | Compiler |
+| Handled by | Preprocessor | Compiler |
 | Type checking | None | Yes |
-| Memory | No storage allocated | Memory allocated |
-| Scope | File-wide (no block scope) | Follows normal scope rules |
-| Debugging | Harder (no name in binary) | Easier |
+| Memory | None allocated | Allocated |
+| Scope | File-wide only | Follows block rules |
+| Debugging | Harder | Easier |
 
 **Prefer `const` for typed constants. Use `#define` for compile-time substitutions like include guards.**

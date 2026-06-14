@@ -14,11 +14,11 @@ Both `struct` and `union` are user-defined data types in C that group multiple m
 | Feature | Structure (`struct`) | Union (`union`) |
 |---|---|---|
 | **Keyword** | `struct` | `union` |
-| **Memory** | Each member gets its **own memory** | All members **share the same memory** |
-| **Size** | Sum of all member sizes (+ padding) | Size of the **largest** member |
-| **Value preservation** | All members hold their values simultaneously | Only the **last-written** member is valid |
-| **Access** | Multiple members accessible at once | Only one member valid at a time |
-| **Initialization** | Multiple members can be initialized | Only the **first** member can be initialized |
+| **Memory** | Own memory per member | Shared memory |
+| **Size** | Sum of all members | Size of largest member |
+| **Values held** | All at once | Only the last-written one |
+| **Access** | Multiple at once | One at a time |
+| **Initialization** | Multiple members | Only the first member |
 | **Use case** | Group related fields of different types | Store one of several types at a time |
 
 ---

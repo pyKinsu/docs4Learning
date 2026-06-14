@@ -69,8 +69,8 @@ a = 20;   // ❌ Error: assignment of read-only variable 'a'
 | Handled by | Compiler | Preprocessor |
 | Memory allocated | Yes | No |
 | Type safety | Enforced | Not enforced |
-| Scope | Block / Function / Global | Global only (file scope) |
-| Error checking | At compile-time | None |
-| Debugging | Easier (has a name) | Harder (replaced before compile) |
+| Scope | Follows block rules | File-wide only |
+| Error checking | Compile-time | None |
+| Debugging | Easier — has a name | Harder — replaced before compiling |
 
 **Best practice:** Prefer `const` over `#define` for typed constants in modern C. Use `#define` for values that are truly compile-time substitutions (like include guards).

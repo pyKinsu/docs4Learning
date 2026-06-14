@@ -13,15 +13,15 @@ Both macros and functions let you reuse code — but they work very differently 
 
 | Feature | Macro (`#define`) | Function |
 |---|---|---|
-| **Processed by** | Preprocessor (before compile) | Compiler |
-| **Type checking** | None — no types at all | Full type checking |
-| **Speed** | Faster — code is inlined | Slight overhead (call + return) |
-| **Code size** | Larger — expands at every call site | Smaller — single definition |
-| **Debugging** | Hard — no name in the binary | Easy — shows in stack trace |
-| **Side effects** | Possible — arguments evaluated multiple times | None — args evaluated once |
-| **Scope** | File-wide | Follows normal C scope rules |
+| **Processed by** | Preprocessor | Compiler |
+| **Type checking** | None | Full |
+| **Speed** | Faster — inlined | Slight call overhead |
+| **Code size** | Larger | Smaller |
+| **Debugging** | Hard — no name in binary | Easy — shows in stack trace |
+| **Side effects** | Args may run multiple times | Args run once |
+| **Scope** | File-wide | Normal C scope rules |
 | **Recursion** | Not possible | Yes |
-| **Return value** | Expands to an expression | Uses `return` statement |
+| **Return value** | An expression | `return` statement |
 
 ---
 

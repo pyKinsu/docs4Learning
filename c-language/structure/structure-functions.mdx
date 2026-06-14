@@ -107,10 +107,10 @@ int main() {
 
 ## Comparison
 
-| Method | Copies Data? | Modifies Original? | Speed |
+| Method | Copies Data | Modifies Original | Speed |
 |---|---|---|---|
-| Pass by Value | Yes | No | Slower (large structs) |
+| Pass by Value | Yes | No | Slower |
 | Pass by Reference | No | Yes | Faster |
-| Return struct | Yes (new copy) | N/A | Moderate |
+| Return struct | Yes | — | Moderate |
 
 **Best practice:** For large structures, always prefer passing by reference using a pointer. Use `const struct Type *ptr` if you want to read without modifying.

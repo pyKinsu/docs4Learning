@@ -177,8 +177,8 @@ int main() {
 
 | | Sequential Access | Random Access |
 |---|---|---|
-| Access method | One by one, in order | Jump to any position directly |
-| Speed for specific record | Slow (must scan from start) | Fast (direct seek) |
+| Access method | One by one, in order | Jump directly to a position |
+| Speed for one record | Slow — scans from start | Fast — direct seek |
 | Functions | `fgets()`, `fscanf()` | `fseek()`, `fread()`, `fwrite()` |
-| File type | Text files | Binary files (usually) |
+| File type | Text files | Usually binary |
 | Use case | Logs, reports | Databases, indexed records |

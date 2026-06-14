@@ -94,9 +94,9 @@ Without parentheses around parameters, expressions involving operators can produ
 |---|---|---|
 | Processed by | Preprocessor | Compiler |
 | Type checking | None | Yes |
-| Speed | Faster (inline expansion) | Slight overhead (call/return) |
+| Speed | Faster — inlined | Slight call overhead |
 | Debugging | Harder | Easier |
-| Code bloat | More (expands everywhere) | Less (single definition) |
-| Side effects | Possible (args evaluated multiple times) | None |
+| Code size | Larger | Smaller |
+| Side effects | Possible | None |
 
 **Use macros for short, frequently-called operations. Prefer `inline` functions in C99+ for type safety.**

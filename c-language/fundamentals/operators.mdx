@@ -16,15 +16,17 @@ int sum = a + b;
 
 ## Arithmetic Operators
 
-Used to perform mathematical operations:
+Used to perform mathematical operations (assume `a = 10`, `b = 3`):
 
-| Operator | Name | Example (a=10, b=3) | Result |
+| Operator | Name | Example | Result |
 |---|---|---|---|
 | `+` | Addition | `a + b` | `13` |
 | `-` | Subtraction | `a - b` | `7` |
 | `*` | Multiplication | `a * b` | `30` |
-| `/` | Division | `a / b` | `3` (integer division) |
-| `%` | Modulus | `a % b` | `1` (remainder) |
+| `/` | Division | `a / b` | `3` |
+| `%` | Modulus | `a % b` | `1` |
+
+`/` performs **integer division** when both operands are integers (drops the decimal). `%` gives the **remainder** of that division.
 
 ---
 
@@ -56,16 +58,16 @@ a %= 3;   // a = a % 3
 
 ## Relational Operators
 
-Compare two values. Result is `1` (true) or `0` (false):
+Compare two values. Result is `1` (true) or `0` (false). Assume `a = 10`, `b = 5`:
 
-| Operator | Description | Example (a=10, b=5) | Result |
+| Operator | Description | Example | Result |
 |---|---|---|---|
-| `==` | Equal to | `a == b` | `0` (false) |
-| `!=` | Not equal to | `a != b` | `1` (true) |
+| `==` | Equal to | `a == b` | `0` |
+| `!=` | Not equal to | `a != b` | `1` |
 | `>` | Greater than | `a > b` | `1` |
 | `<` | Less than | `a < b` | `0` |
-| `>=` | Greater than or equal | `a >= b` | `1` |
-| `<=` | Less than or equal | `a <= b` | `0` |
+| `>=` | Greater or equal | `a >= b` | `1` |
+| `<=` | Less or equal | `a <= b` | `0` |
 
 ---
 
@@ -75,8 +77,8 @@ Combine multiple conditions:
 
 | Operator | Name | Meaning |
 |---|---|---|
-| `&&` | Logical AND | True if **both** conditions are true |
-| `\|\|` | Logical OR | True if **at least one** condition is true |
+| `&&` | Logical AND | True if both are true |
+| `\|\|` | Logical OR | True if either is true |
 | `!` | Logical NOT | Inverts the condition |
 
 ```c
@@ -93,11 +95,11 @@ Operate at the binary (bit) level:
 
 | Operator | Name | Description |
 |---|---|---|
-| `&` | Bitwise AND | 1 only if both bits are 1 |
-| `\|` | Bitwise OR | 1 if either bit is 1 |
-| `^` | Bitwise XOR | 1 if exactly one bit is 1 |
-| `~` | Bitwise NOT | Flips all bits |
-| `<<` | Left Shift | Shifts bits left, fills with 0s |
+| `&` | AND | 1 if both bits are 1 |
+| `\|` | OR | 1 if either bit is 1 |
+| `^` | XOR | 1 if bits differ |
+| `~` | NOT | Flips all bits |
+| `<<` | Left Shift | Shifts bits left |
 | `>>` | Right Shift | Shifts bits right |
 
 **Example:**
