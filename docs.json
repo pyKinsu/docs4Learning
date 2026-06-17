@@ -117,6 +117,61 @@
         ]
       },
       {
+        "tab": "C++",
+        "groups": [
+          {
+            "group": "Fundamentals",
+            "pages": [
+              "cpp/fundamentals/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Python",
+        "groups": [
+          {
+            "group": "Fundamentals",
+            "pages": [
+              "python/fundamentals/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Java",
+        "groups": [
+          {
+            "group": "Fundamentals",
+            "pages": [
+              "java/fundamentals/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "JavaScript",
+        "groups": [
+          {
+            "group": "Fundamentals",
+            "pages": [
+              "javascript/fundamentals/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "HTML",
+        "groups": [
+          {
+            "group": "Fundamentals",
+            "pages": [
+              "html/fundamentals/introduction"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Practice",
         "groups": [
           {
