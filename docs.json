@@ -24,9 +24,7 @@
           {
             "group": "Menu",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "index"
             ]
           }
         ]
