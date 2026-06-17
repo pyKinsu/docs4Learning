@@ -1,0 +1,74 @@
+---
+title: "Decision Making"
+description: "Practice programs on if-else, nested conditions, switch, and ternary operators in C."
+---
+
+## Q1. Even or Odd
+
+Check whether a number is even or odd.
+
+```c
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    if (n % 2 == 0)
+        printf("Even\n");
+    else
+        printf("Odd\n");
+    return 0;
+}
+```
+
+---
+
+## Q2. Largest of Three Numbers
+
+Find the largest of three numbers using nested if-else.
+
+```c
+#include <stdio.h>
+
+int main() {
+    int a, b, c;
+    scanf("%d %d %d", &a, &b, &c);
+    if (a >= b && a >= c)
+        printf("Largest = %d\n", a);
+    else if (b >= a && b >= c)
+        printf("Largest = %d\n", b);
+    else
+        printf("Largest = %d\n", c);
+    return 0;
+}
+```
+
+---
+
+## Q3. Grade Calculator Using Switch
+
+Print a grade for a given mark using a switch statement.
+
+```c
+#include <stdio.h>
+
+int main() {
+    int marks;
+    scanf("%d", &marks);
+    switch (marks / 10) {
+        case 10:
+        case 9:
+            printf("Grade: A\n");
+            break;
+        case 8:
+            printf("Grade: B\n");
+            break;
+        case 7:
+            printf("Grade: C\n");
+            break;
+        default:
+            printf("Grade: F\n");
+    }
+    return 0;
+}
+```

@@ -117,22 +117,19 @@
         ]
       },
       {
-        "tab": "Examples",
+        "tab": "Practice",
         "groups": [
           {
-            "group": "Overview",
+            "group": "C",
             "pages": [
-              "examples/index"
-            ]
-          },
-          {
-            "group": "C Language",
-            "pages": [
-              "examples/c-language/hello-world",
-              "examples/c-language/fibonacci",
-              "examples/c-language/factorial",
-              "examples/c-language/reverse-string",
-              "examples/c-language/linked-list"
+              "practice/c/basics",
+              "practice/c/operators",
+              "practice/c/decision-making",
+              "practice/c/loops",
+              "practice/c/arrays",
+              "practice/c/functions",
+              "practice/c/pointers",
+              "practice/c/structures"
             ]
           }
         ]

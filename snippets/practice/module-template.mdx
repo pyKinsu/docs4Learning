@@ -1,0 +1,56 @@
+---
+title: "Practice Module Template"
+description: "Reference structure for adding a new practice module (any language)."
+---
+
+Use this structure when adding a new module page under `practice/<language>/<module>.mdx`.
+Each module page holds several questions, each followed directly by its solution —
+there is no separate Q&A page.
+
+```mdx
+---
+title: "Module Title"
+description: "One-line description of what this module covers."
+---
+
+## Q1. Problem Title
+
+Short statement of what the program must do.
+
+\`\`\`<lang>
+// Full working solution
+\`\`\`
+
+---
+
+## Q2. Next Problem Title
+
+Short statement of what the program must do.
+
+\`\`\`<lang>
+// Full working solution
+\`\`\`
+```
+
+## Adding a new module
+
+1. Create the file at `practice/<language>/<module-slug>.mdx` following the structure above.
+2. Add the page path to the matching language group under the **Practice** tab in `docs.json`.
+
+## Adding a new language
+
+1. Create a folder `practice/<language>/` and add module pages inside it.
+2. Add a new group to the **Practice** tab in `docs.json`, named after the language,
+   listing its module pages — e.g.:
+
+```json
+{
+  "group": "Python",
+  "pages": [
+    "practice/python/basics",
+    "practice/python/loops"
+  ]
+}
+```
+
+Modules and languages can be added incrementally — only create what currently has content.
