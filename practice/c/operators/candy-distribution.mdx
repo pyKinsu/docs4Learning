@@ -1,0 +1,56 @@
+---
+title: "Candy Distribution"
+description: "Calculate how many candies each friend gets and how many are left over."
+---
+
+## Problem Statement
+
+Imagine you have a bag full of candies and you want to share them equally among your friends so that everyone gets the same number of candies. After sharing, some candies might remain that cannot be distributed equally.
+
+Write a C program to calculate how many candies each friend will receive and how many candies will be leftover.
+
+## Test Case
+
+| | |
+|---|---|
+| **Input** | Candies: 25, Friends: 4 |
+| **Expected Output** | Each friend gets 6 candies, Leftover candies: 1 |
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    int candy, friends;
+    int leftover, got;
+
+    printf("Enter the no of candies: ");
+    scanf("%d", &candy);
+
+    printf("Enter no of friends: ");
+    scanf("%d", &friends);
+
+    got = candy / friends;
+    leftover = candy % friends;
+
+    printf("Each friend will get %d candies\n", got);
+    printf("leftover candies = %d", leftover);
+
+    return 0;
+}
+```
+
+## Input
+
+```
+Enter the no of candies: 25
+Enter no of friends: 4
+```
+
+## Output
+
+```
+Each friend will get 6 candies
+leftover candies = 1
+```

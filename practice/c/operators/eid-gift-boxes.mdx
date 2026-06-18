@@ -1,0 +1,60 @@
+---
+title: "Eid Gift Boxes"
+description: "Determine total gifts prepared and overall cost for Eid celebrations."
+---
+
+## Problem Statement
+
+During Eid, a family is preparing gift boxes for their relatives. In addition to the planned gifts, they also decide to prepare extra gift boxes.
+
+Determine the total number of gifts prepared and the overall cost based on the price of each gift in a C program.
+
+## Test Case
+
+| | |
+|---|---|
+| **Input** | Relatives: 12, Extra gifts: 3, Price per gift: 15 |
+| **Expected Output** | Total gifts = 15, Total costs = 255 |
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    int relatives, extra, price;
+    int totalGifts, totalCost;
+
+    printf("Enter number of relatives: ");
+    scanf("%d", &relatives);
+
+    printf("Extra gifts: ");
+    scanf("%d", &extra);
+
+    printf("Enter price of each gift: ");
+    scanf("%d", &price);
+
+    totalGifts = relatives + extra;
+    totalCost = totalGifts * price;
+
+    printf("total gifts = %d\n", totalGifts);
+    printf("total costs = %d\n", totalCost);
+
+    return 0;
+}
+```
+
+## Input
+
+```
+Enter number of relatives: 12
+Extra gifts: 3
+Enter price of each gift: 15
+```
+
+## Output
+
+```
+total gifts = 15
+total costs = 255
+```

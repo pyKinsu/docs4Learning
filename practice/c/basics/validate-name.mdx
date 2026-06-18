@@ -1,0 +1,51 @@
+---
+title: "Validate Student Name"
+description: "Accept a name and check if it contains only alphabetical characters."
+---
+
+## Problem Statement
+
+Write a C program to accept a name and check if it contains only alphabets (A–Z, a–z). Display an error message if any invalid character is entered.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    char studentname[100];
+    int valid;
+
+    printf("Enter your name\n");
+    scanf("%s", studentname);
+
+    for (int i = 0; studentname[i] != '\0'; i++) {
+        if ((studentname[i] >= 'A' && studentname[i] <= 'Z') ||
+            (studentname[i] >= 'a' && studentname[i] <= 'z')) {
+            valid = 1;
+        } else {
+            valid = 0;
+        }
+    }
+
+    if (valid == 1) {
+        printf("your name is %s\n", studentname);
+    } else {
+        printf("Invalid name");
+    }
+
+    return 0;
+}
+```
+
+## Input
+
+```
+Rahul
+```
+
+## Output
+
+```
+your name is Rahul
+```

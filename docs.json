@@ -177,7 +177,8 @@
           {
             "group": "C",
             "pages": [
-              "practice/c/overview"
+              "practice/c/overview",
+              "practice/c/recent"
             ]
           },
           {
@@ -189,7 +190,9 @@
               "practice/c/basics/swap-two-numbers",
               "practice/c/basics/login-name-validation",
               "practice/c/basics/validate-password",
-              "practice/c/basics/atm-withdrawal"
+              "practice/c/basics/atm-withdrawal",
+              "practice/c/basics/validate-name",
+              "practice/c/basics/calorie-calculator"
             ]
           },
           {
@@ -198,7 +201,9 @@
               "practice/c/operators/questions",
               "practice/c/operators/arithmetic-operators",
               "practice/c/operators/relational-operators",
-              "practice/c/operators/bitwise-and-or"
+              "practice/c/operators/bitwise-and-or",
+              "practice/c/operators/candy-distribution",
+              "practice/c/operators/eid-gift-boxes"
             ]
           },
           {

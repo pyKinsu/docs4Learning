@@ -1,0 +1,49 @@
+---
+title: "Marathon Calorie Calculator"
+description: "Calculate calories burned by a marathon runner based on distance travelled."
+---
+
+## Problem Statement
+
+Imagine you are developing a fitness tracking app for marathon runners. The app's goal is to calculate how many calories a runner burns based on the distance they run. A person burns **50 cal/km**.
+
+Write a C program that takes distance travelled in metres and calculates the calories burned by the marathon runner.
+
+## Test Case
+
+| | |
+|---|---|
+| **Input** | Distance in metres: 7500 |
+| **Expected Output** | You burned 375 calories by running 7.5km |
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    float distance;
+
+    printf("Enter the distance you travelled in metres: ");
+    scanf("%f", &distance);
+
+    float kmdistance = distance / 1000;
+    float calorieburn = kmdistance * 50;
+
+    printf("You burned %.0f calories by running %.1fkm.\n", calorieburn, kmdistance);
+
+    return 0;
+}
+```
+
+## Input
+
+```
+Enter the distance you travelled in metres: 7500
+```
+
+## Output
+
+```
+You burned 375 calories by running 7.5km.
+```
