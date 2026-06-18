@@ -175,8 +175,15 @@
         "tab": "Practice",
         "groups": [
           {
+            "group": "C",
+            "pages": [
+              "practice/c/overview"
+            ]
+          },
+          {
             "group": "C Basics",
             "pages": [
+              "practice/c/basics/questions",
               "practice/c/basics/print-your-name",
               "practice/c/basics/area-of-rectangle",
               "practice/c/basics/swap-two-numbers",
@@ -188,6 +195,7 @@
           {
             "group": "Operators",
             "pages": [
+              "practice/c/operators/questions",
               "practice/c/operators/arithmetic-operators",
               "practice/c/operators/relational-operators",
               "practice/c/operators/bitwise-and-or"
@@ -196,6 +204,7 @@
           {
             "group": "Decision Making",
             "pages": [
+              "practice/c/decision-making/questions",
               "practice/c/decision-making/even-or-odd",
               "practice/c/decision-making/largest-of-three",
               "practice/c/decision-making/grade-calculator"
@@ -204,6 +213,7 @@
           {
             "group": "Loops",
             "pages": [
+              "practice/c/loops/questions",
               "practice/c/loops/print-1-to-n",
               "practice/c/loops/multiplication-table",
               "practice/c/loops/sum-of-digits"
@@ -212,6 +222,7 @@
           {
             "group": "Arrays",
             "pages": [
+              "practice/c/arrays/questions",
               "practice/c/arrays/sum-of-array",
               "practice/c/arrays/largest-element",
               "practice/c/arrays/reverse-array"
@@ -220,6 +231,7 @@
           {
             "group": "Functions",
             "pages": [
+              "practice/c/functions/questions",
               "practice/c/functions/add-two-numbers",
               "practice/c/functions/factorial-recursion",
               "practice/c/functions/check-prime"
@@ -228,6 +240,7 @@
           {
             "group": "Pointers",
             "pages": [
+              "practice/c/pointers/questions",
               "practice/c/pointers/basic-pointer",
               "practice/c/pointers/swap-using-pointers",
               "practice/c/pointers/sum-of-array-pointer"
@@ -236,6 +249,7 @@
           {
             "group": "Structures",
             "pages": [
+              "practice/c/structures/questions",
               "practice/c/structures/student-record",
               "practice/c/structures/array-of-structures",
               "practice/c/structures/nested-structure"
