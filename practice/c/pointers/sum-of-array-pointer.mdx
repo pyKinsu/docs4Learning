@@ -1,0 +1,29 @@
+---
+title: "Sum of Array Using Pointer"
+description: "Traverse an array using pointer arithmetic and find the sum."
+---
+
+## Problem Statement
+
+Write a C program to find the sum of array elements by traversing the array using pointer arithmetic.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int *p = arr;
+    int sum = 0, n = 5;
+    for (int i = 0; i < n; i++) sum += *(p + i);
+    printf("Sum = %d\n", sum);
+    return 0;
+}
+```
+
+## Output
+
+```
+Sum = 15
+```

@@ -1,0 +1,78 @@
+---
+title: "ATM Withdrawal System"
+description: "Simulate ATM banking transactions with balance, deposit, and withdrawal."
+---
+
+## Problem Statement
+
+Ravi has a savings account in a bank and frequently uses the ATM to withdraw money.
+
+To ensure customers always maintain a minimum amount in their account, the bank has introduced the following rules:
+
+- The withdrawal amount must not exceed the available account balance.
+- A minimum balance of ₹1000 must remain in the account after the withdrawal.
+
+Write a C program that accepts choices from the user for banking transactions: check balance, withdrawal amount, and deposit amount.
+
+## Solution
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    static float balance = 1000.0f;
+    float amount;
+    int choice;
+
+    do {
+        printf("Select your choice 1.Check Balance 2.Deposit 3.Withdrawal 4.Exit\n");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                printf("Your Current balance is: %.2f\n", balance);
+                break;
+            case 2:
+                printf("Enter Deposit Amount: ");
+                scanf("%f", &amount);
+                if(amount > 0) {
+                    balance = balance + amount;
+                    printf("Your Updated balance is: %.2f\n", balance);
+                } else {
+                    printf("Transaction Failed!\n");
+                }
+                break;
+            case 3:
+                printf("Enter Withdrawal Amount: ");
+                scanf("%f", &amount);
+                if(amount <= balance && (balance - amount) >= 1000) {
+                    printf("Withdrawal Successful.\n");
+                    balance = balance - amount;
+                    printf("Remaining Balance = %.2f\n", balance);
+                } else {
+                    printf("Transaction Failed!\n");
+                }
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("Invalid Choice\n");
+        }
+    } while(1);
+
+    return 0;
+}
+```
+
+## Input
+
+```
+1
+```
+
+## Output
+
+```
+Your Current balance is: 1000.00
+```

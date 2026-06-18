@@ -1,0 +1,37 @@
+---
+title: "Add Two Numbers Using a Function"
+description: "Write a function that takes two integers and returns their sum."
+---
+
+## Problem Statement
+
+Write a C program with a user-defined function that takes two integers as parameters and returns their sum.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int a, b;
+    scanf("%d %d", &a, &b);
+    printf("Sum = %d\n", add(a, b));
+    return 0;
+}
+```
+
+## Input
+
+```
+4 6
+```
+
+## Output
+
+```
+Sum = 10
+```

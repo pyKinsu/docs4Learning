@@ -1,0 +1,33 @@
+---
+title: "Swap Using Pointers"
+description: "Swap two variables using pointers passed to a function."
+---
+
+## Problem Statement
+
+Write a C program with a function that swaps two variables using pointers.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int a = 5, b = 10;
+    swap(&a, &b);
+    printf("a = %d, b = %d\n", a, b);
+    return 0;
+}
+```
+
+## Output
+
+```
+a = 10, b = 5
+```

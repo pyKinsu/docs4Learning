@@ -1,0 +1,37 @@
+---
+title: "Sum of Digits"
+description: "Find the sum of digits of a number using a while loop."
+---
+
+## Problem Statement
+
+Write a C program that takes an integer as input and finds the sum of its digits using a while loop.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    scanf("%d", &n);
+    while (n > 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    printf("Sum = %d\n", sum);
+    return 0;
+}
+```
+
+## Input
+
+```
+1234
+```
+
+## Output
+
+```
+Sum = 10
+```

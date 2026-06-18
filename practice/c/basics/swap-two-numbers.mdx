@@ -1,0 +1,36 @@
+---
+title: "Swap Two Numbers"
+description: "Swap two integers without using a third variable."
+---
+
+## Problem Statement
+
+Swap two integers without using a third variable.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf("%d %d", &a, &b);
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    printf("a = %d, b = %d\n", a, b);
+    return 0;
+}
+```
+
+## Input
+
+```
+10 20
+```
+
+## Output
+
+```
+a = 20, b = 10
+```

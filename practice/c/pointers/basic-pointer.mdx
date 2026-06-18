@@ -1,0 +1,29 @@
+---
+title: "Basic Pointer"
+description: "Print a variable's value and address using a pointer."
+---
+
+## Problem Statement
+
+Write a C program that declares an integer variable, creates a pointer to it, and prints both the value and the memory address using the pointer.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    int x = 42;
+    int *p = &x;
+    printf("Value   : %d\n", *p);
+    printf("Address : %p\n", (void *)p);
+    return 0;
+}
+```
+
+## Output
+
+```
+Value   : 42
+Address : 0x7ffd... (varies by system)
+```

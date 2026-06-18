@@ -1,0 +1,53 @@
+---
+title: "Grade Calculator Using Switch"
+description: "Print a grade for a given mark using a switch statement."
+---
+
+## Problem Statement
+
+Write a C program that takes marks as input and prints the corresponding grade using a switch statement.
+
+| Marks | Grade |
+|-------|-------|
+| 90–100 | A |
+| 80–89 | B |
+| 70–79 | C |
+| Below 70 | F |
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    int marks;
+    scanf("%d", &marks);
+    switch (marks / 10) {
+        case 10:
+        case 9:
+            printf("Grade: A\n");
+            break;
+        case 8:
+            printf("Grade: B\n");
+            break;
+        case 7:
+            printf("Grade: C\n");
+            break;
+        default:
+            printf("Grade: F\n");
+    }
+    return 0;
+}
+```
+
+## Input
+
+```
+85
+```
+
+## Output
+
+```
+Grade: B
+```

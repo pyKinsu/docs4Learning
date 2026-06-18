@@ -1,0 +1,46 @@
+---
+title: "Array of Structures"
+description: "Store records of 3 students and display them."
+---
+
+## Problem Statement
+
+Write a C program that uses an array of structures to store the name and roll number of 3 students and then displays all their records.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int roll;
+};
+
+int main() {
+    struct Student s[3];
+    for (int i = 0; i < 3; i++) {
+        scanf("%s %d", s[i].name, &s[i].roll);
+    }
+    for (int i = 0; i < 3; i++) {
+        printf("%s : %d\n", s[i].name, s[i].roll);
+    }
+    return 0;
+}
+```
+
+## Input
+
+```
+Alice 101
+Bob 102
+Charlie 103
+```
+
+## Output
+
+```
+Alice : 101
+Bob : 102
+Charlie : 103
+```

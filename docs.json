@@ -10,10 +10,10 @@
   "favicon": "/favicon.svg",
   "metadata": {
     "og:title": "AcadLink Learn",
-    "og:description": "Free programming documentation for college students \u2014 built for AcadLink.",
+    "og:description": "Free programming documentation for college students — built for AcadLink.",
     "og:site_name": "AcadLink Learn",
     "twitter:title": "AcadLink Learn",
-    "twitter:description": "Free programming documentation for college students \u2014 built for AcadLink.",
+    "twitter:description": "Free programming documentation for college students — built for AcadLink.",
     "twitter:card": "summary_large_image"
   },
   "navigation": {
@@ -175,16 +175,70 @@
         "tab": "Practice",
         "groups": [
           {
-            "group": "C",
+            "group": "C Basics",
             "pages": [
-              "practice/c/basics",
-              "practice/c/operators",
-              "practice/c/decision-making",
-              "practice/c/loops",
-              "practice/c/arrays",
-              "practice/c/functions",
-              "practice/c/pointers",
-              "practice/c/structures"
+              "practice/c/basics/print-your-name",
+              "practice/c/basics/area-of-rectangle",
+              "practice/c/basics/swap-two-numbers",
+              "practice/c/basics/login-name-validation",
+              "practice/c/basics/validate-password",
+              "practice/c/basics/atm-withdrawal"
+            ]
+          },
+          {
+            "group": "Operators",
+            "pages": [
+              "practice/c/operators/arithmetic-operators",
+              "practice/c/operators/relational-operators",
+              "practice/c/operators/bitwise-and-or"
+            ]
+          },
+          {
+            "group": "Decision Making",
+            "pages": [
+              "practice/c/decision-making/even-or-odd",
+              "practice/c/decision-making/largest-of-three",
+              "practice/c/decision-making/grade-calculator"
+            ]
+          },
+          {
+            "group": "Loops",
+            "pages": [
+              "practice/c/loops/print-1-to-n",
+              "practice/c/loops/multiplication-table",
+              "practice/c/loops/sum-of-digits"
+            ]
+          },
+          {
+            "group": "Arrays",
+            "pages": [
+              "practice/c/arrays/sum-of-array",
+              "practice/c/arrays/largest-element",
+              "practice/c/arrays/reverse-array"
+            ]
+          },
+          {
+            "group": "Functions",
+            "pages": [
+              "practice/c/functions/add-two-numbers",
+              "practice/c/functions/factorial-recursion",
+              "practice/c/functions/check-prime"
+            ]
+          },
+          {
+            "group": "Pointers",
+            "pages": [
+              "practice/c/pointers/basic-pointer",
+              "practice/c/pointers/swap-using-pointers",
+              "practice/c/pointers/sum-of-array-pointer"
+            ]
+          },
+          {
+            "group": "Structures",
+            "pages": [
+              "practice/c/structures/student-record",
+              "practice/c/structures/array-of-structures",
+              "practice/c/structures/nested-structure"
             ]
           }
         ]

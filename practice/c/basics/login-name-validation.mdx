@@ -1,0 +1,49 @@
+---
+title: "Login Name Validation System"
+description: "Validate that a login name contains only alphabetical characters."
+---
+
+## Problem Statement
+
+A software company is developing a new online portal for its employees. During registration, every employee must create a Login Name. To maintain a consistent naming format, the company has decided that the login name should contain only alphabetical characters (A–Z or a–z). Numbers, spaces, and special characters are not allowed.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+int main() {
+    char loginName[50];
+    int i, valid = 1;
+
+    printf("Enter Login Name: ");
+    scanf("%s", loginName);
+
+    for(i = 0; loginName[i] != '\0'; i++) {
+        if(!((loginName[i] >= 'A' && loginName[i] <= 'Z') ||
+             (loginName[i] >= 'a' && loginName[i] <= 'z'))) {
+            valid = 0;
+            break;
+        }
+    }
+
+    if(valid)
+        printf("Login Name Accepted.");
+    else
+        printf("Invalid Login Name! Only alphabets are allowed.");
+
+    return 0;
+}
+```
+
+## Input
+
+```
+Rahul
+```
+
+## Output
+
+```
+Login Name Accepted.
+```

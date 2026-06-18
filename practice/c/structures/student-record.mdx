@@ -1,0 +1,42 @@
+---
+title: "Student Record"
+description: "Define a structure to store and display a student's name and marks."
+---
+
+## Problem Statement
+
+Write a C program that defines a structure to store a student's name and marks, then takes input from the user and displays the stored information.
+
+## Solution
+
+```c
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    float marks;
+};
+
+int main() {
+    struct Student s;
+    printf("Enter name: ");
+    scanf("%s", s.name);
+    printf("Enter marks: ");
+    scanf("%f", &s.marks);
+    printf("Name: %s, Marks: %.2f\n", s.name, s.marks);
+    return 0;
+}
+```
+
+## Input
+
+```
+Alice
+92.5
+```
+
+## Output
+
+```
+Name: Alice, Marks: 92.50
+```
